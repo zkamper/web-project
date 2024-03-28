@@ -23,6 +23,7 @@ $othersColor: rgb(237, 222, 62);
     color: $brandColor;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Bottom shadow */
     z-index: 1000;   /* To ensure it appears above other elements */
+
 }
 
 .brand-title{
@@ -68,24 +69,26 @@ $othersColor: rgb(237, 222, 62);
 .toggle-button .bar{
     height: 3px;
     width: 100%;
-    background-color: white;
+    background-color: $othersColor;
     border-radius: 10px;
 }
 
+// da, js-u merge, lasam la 600px
 /* pentru ecranele mici */
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .toggle-button{
         display: flex;
     }
 
     .navbar-links{
-        display: none;
+        display: none; 
         width: 100%;
     }
 
     .navbar{
         flex-direction: column;
         align-items: flex-start;
+    
     }
 
     .navbar-links ul{
@@ -98,7 +101,7 @@ $othersColor: rgb(237, 222, 62);
     }
 
     .navbar-links li a{
-        padding: 0.5rem 1rem;
+        padding: 0.3rem 0.8rem;
     }
 
     .navbar-links.active{

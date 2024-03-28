@@ -1,0 +1,57 @@
+/* Default margin for larger screens */
+p:first-of-type {
+    margin-top: 20vh; /* cu 20vh, daca ar fi text imediat dupa navbar, inca ar fi 
+                        neacoperit de acesta */
+}
+
+.main-content {
+    position: relative;
+    top: 25vh; /*value based on the height of your navbar */
+    z-index: 1; /*the content is above the navbar */
+    text-align: center; /* Center-align the content */
+}
+
+.main-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Use a sleek font */
+    font-size: 45px; /* Increase font size for emphasis */
+    font-weight: 400; /* Semi-bold */
+    color: #ba2d2d;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+.sub-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Use the same sleek font */
+    font-size: x-large; /* Increased font size */ /* font size : 1.5 em ?*/
+    font-weight: 400; /* Regular weight */
+    color: #272626;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px; /* Reduced margin */
+}
+
+.animated-gif {
+    max-width: 100%; /* Makes sure the GIF doesn't exceed its container */
+    height: auto; /* Maintains the aspect ratio of the GIF */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 6vw;
+    }
+
+    .sub-text {
+        font-size: 3vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 8vw;
+    }
+
+    .sub-text {
+        font-size: 4vw;
+    }
+}
