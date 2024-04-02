@@ -6,26 +6,25 @@ p:first-of-type {
 
 .main-content {
     position: relative;
-    top: 25vh; /*value based on the height of your navbar */
+    top: 28vh; /*value based on the height of your navbar */
     z-index: 1; /*the content is above the navbar */
     text-align: center; /* Center-align the content */
 }
 
 .main-title {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Use a sleek font */
-    font-size: 45px; /* Increase font size for emphasis */
-    font-weight: 400; /* Semi-bold */
-    color: #ba2d2d;
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-size: 62px; /* Increase font size for emphasis */
+    color: #060606;
     letter-spacing: 1px;
-    text-transform: uppercase;
     margin-bottom: 15px; /* Reduced margin */
+    font-weight: 350; /* Commenting out the bold property */
 }
 
 .sub-text {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Use the same sleek font */
-    font-size: x-large; /* Increased font size */ /* font size : 1.5 em ?*/
-    font-weight: 400; /* Regular weight */
-    color: #272626;
+    font-family: "Roboto", 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Use the same sleek font */
+    font-size: xx-large; /* Increased font size */ /* font size : 1.5 em ?*/
+    font-weight: 300; /* Regular weight */
+    color: #201e1e;
     letter-spacing: 0.5px;
     margin-bottom: 25px; /* Reduced margin */
 }
@@ -33,6 +32,8 @@ p:first-of-type {
 .animated-gif {
     max-width: 100%; /* Makes sure the GIF doesn't exceed its container */
     height: auto; /* Maintains the aspect ratio of the GIF */
+    margin-top: 2rem;
+    margin-bottom: 4rem;
 }
 
 /* Responsive adjustments */
@@ -54,4 +55,48 @@ p:first-of-type {
     .sub-text {
         font-size: 4vw;
     }
+}
+
+.special-section {
+    background: linear-gradient(to right, #411d96, #6f3be8);
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    color: #ffffff; /* White text color */
+    padding: 6rem 0; /* Padding for the space */
+    text-align: center; /* Center-align the text */
+    font-size: 32px; /* Adjust font size as needed */
+    font-weight: 500;
+    margin-bottom: 4rem;
+}
+
+.special-section p {
+    margin: 0; /* Remove default margin */
+}
+
+.image-text-container {
+    display: flex;
+    width: 100%;
+}
+
+.image-text-container h2 {
+    font-size: 36px; /* Adjust the font size as needed */
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+}
+
+.half-text, .half-text-2 {
+    padding: 5rem;
+    width: 50%;
+    background-color: #c399c3;
+    color: whitesmoke;
+}
+
+.subtext {
+    font-size: 24px; /* Adjust the font size for the subtext */
+    margin-top: 1rem; /* Add some top margin */
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+}
+
+.half-image, .half-image-practice {
+    width: 50%;
+    height: auto;
+    object-fit: cover; /* Ensures the image covers the container */
 }

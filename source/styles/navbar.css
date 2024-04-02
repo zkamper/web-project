@@ -14,13 +14,26 @@ body {
   top: 0; /* Positioned at the top */
   left: 0;
   width: 100%;
+  height: 16vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #432981;
-  color: rgb(255, 236, 23);
+  background-color: #fefefe;
+  color: #191970;
+  font-weight: 450;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Bottom shadow */
   z-index: 1000; /* To ensure it appears above other elements */
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh; /* Height of the blue padding */
+  background: linear-gradient(to right, #411d96, #2b35bf, rgb(113, 62, 232)); /*#411d96, #6f3be8*/
+  z-index: -1; /* Behind the navbar */
 }
 
 .brand-title {
@@ -47,8 +60,8 @@ body {
   text-align: center;
 }
 
-.navbar-links li:hover {
-  background-color: #553fcf;
+.navbar-links li a:hover {
+  color: #553fcf !important;
 }
 
 .toggle-button {
@@ -65,7 +78,7 @@ body {
 .toggle-button .bar {
   height: 3px;
   width: 100%;
-  background-color: rgb(237, 222, 62);
+  background-color: #333333;
   border-radius: 10px;
 }
 
@@ -81,6 +94,7 @@ body {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    height: 8vh;
   }
   .navbar-links ul {
     width: 100%;
@@ -89,11 +103,15 @@ body {
   .navbar-links li {
     text-align: center;
   }
-  .navbar-links li a {
+  .navbar-links li a:hover {
     padding: 0.3rem 0.8rem;
+    background-color: #432981;
   }
   .navbar-links.active {
     display: flex;
+  }
+  .navbar::before {
+    height: 1vh;
   }
 }
 /*
@@ -101,15 +119,15 @@ setez marginea la dreapta si culoarea individual
 */
 #Practice {
   margin-right: 2rem;
-  color: rgb(237, 222, 62);
+  color: #333333;
 }
 
 #Legislație {
   margin-right: 2rem;
-  color: rgb(237, 222, 62);
+  color: #333333;
 }
 
 #Login {
   margin-right: 2rem;
-  color: rgb(237, 222, 62);
+  color: #333333;
 }/*# sourceMappingURL=navbar.css.map */

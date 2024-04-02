@@ -7,23 +7,35 @@ body{
     padding: 0;
 }
 
-$brandColor: rgb(255, 236, 23);
 /*culoarea celorlalte elemente, care nu sunt 'brand-ul'*/
-$othersColor: rgb(237, 222, 62);
+$othersColor: #333333;
+$theGoodColor: #432981;
 
 .navbar {
     position: fixed;  /* Fixed position */
     top: 0;          /* Positioned at the top */
     left: 0;
     width: 100%;
+    height: 16vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #432981;
-    color: $brandColor;
+    background-color: #fefefe;
+    color: #191970;
+    font-weight: 450;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Bottom shadow */
     z-index: 1000;   /* To ensure it appears above other elements */
+}
 
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5vh; /* Height of the blue padding */
+    background: linear-gradient(to right,#411d96, #2b35bf, rgb(113, 62, 232)); /*#411d96, #6f3be8*/
+    z-index: -1; /* Behind the navbar */
 }
 
 .brand-title{
@@ -51,8 +63,8 @@ $othersColor: rgb(237, 222, 62);
     text-align: center;
 }
 
-.navbar-links li:hover{
-    background-color: #553fcf;
+.navbar-links li a:hover{
+    color: #553fcf !important;
 }
 
 .toggle-button{
@@ -88,7 +100,7 @@ $othersColor: rgb(237, 222, 62);
     .navbar{
         flex-direction: column;
         align-items: flex-start;
-    
+        height: 8vh;
     }
 
     .navbar-links ul{
@@ -100,12 +112,17 @@ $othersColor: rgb(237, 222, 62);
         text-align: center;
     }
 
-    .navbar-links li a{
+    .navbar-links li a:hover{
         padding: 0.3rem 0.8rem;
+        background-color: $theGoodColor;
     }
 
     .navbar-links.active{
         display: flex;
+    }
+
+    .navbar::before{
+        height: 1vh;
     }
 }
 
