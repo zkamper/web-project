@@ -41,6 +41,11 @@ body {
   margin-left: 2rem;
 }
 
+.brand-title a {
+  text-decoration: none; /* remove the underline */
+  color: inherit;
+}
+
 .navbar-links ul {
   margin-right: 0;
   padding: 0;
@@ -54,10 +59,19 @@ body {
 .navbar-links li a {
   text-decoration: none;
   padding: 0.8rem;
-  color: white;
+  color: #333333;
   display: block;
   font-size: 1.3rem;
   text-align: center;
+}
+
+.homepage #Practice,
+.homepage #Legislație {
+  color: #432981; /*standard color */
+}
+
+.legislatie-page #Legislație {
+  color: yellow; /* Yellow color for the legislation page */
 }
 
 .navbar-links li a:hover {
@@ -130,4 +144,6 @@ setez marginea la dreapta si culoarea individual
 #Login {
   margin-right: 2rem;
   color: #333333;
-}/*# sourceMappingURL=navbar.css.map */
+}
+
+/*în 'legislatie-only' page *//*# sourceMappingURL=navbar.css.map */

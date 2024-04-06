@@ -43,6 +43,11 @@ $theGoodColor: #432981;
     margin-left: 2rem;
 }
 
+.brand-title a {
+    text-decoration: none; /* remove the underline */
+    color: inherit; 
+}
+
 .navbar-links ul{
     margin-right: 0;
     padding: 0;
@@ -57,11 +62,22 @@ $theGoodColor: #432981;
 .navbar-links li a{
     text-decoration: none;
     padding: 0.8rem;
-    color: white;
+    color: $othersColor;
     display: block;
     font-size: 1.3rem;
     text-align: center;
 }
+
+.homepage #Practice,
+.homepage #Legislație {
+    color: #432981; /*standard color */
+}
+
+.legislatie-page #Legislație {
+    color: yellow; /* Yellow color for the legislation page */
+}
+
+//pentru mediu de invatare, voi adauga ceva similar
 
 .navbar-links li a:hover{
     color: #553fcf !important;
@@ -143,3 +159,6 @@ setez marginea la dreapta si culoarea individual
     margin-right: 2rem;
     color: $othersColor;
 }
+
+//ce-i mai jos este inca in testare
+/*în 'legislatie-only' page */
