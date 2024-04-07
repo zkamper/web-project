@@ -73,6 +73,9 @@ body {
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
 }
+.mediu-invatare #Practice {
+  color: red; /* Red color for the learning environment page */
+}
 
 .navbar-links li a:hover {
   color: #553fcf !important;
