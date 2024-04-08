@@ -39,6 +39,7 @@ body {
 .brand-title {
   font-size: 2rem;
   margin-left: 2rem;
+  margin-top: 2rem;
 }
 
 .brand-title a {
@@ -54,6 +55,7 @@ body {
 
 .navbar-links li {
   list-style: none;
+  padding-top: 2rem;
 }
 
 .navbar-links li a {
@@ -101,6 +103,9 @@ body {
 
 /* pentru ecranele mici */
 @media (max-width: 600px) {
+  .brand-title {
+    margin-top: 0rem;
+  }
   .toggle-button {
     display: flex;
   }
@@ -118,6 +123,7 @@ body {
     flex-direction: column;
   }
   .navbar-links li {
+    padding-top: 0rem;
     text-align: center;
   }
   .navbar-links li a:hover {
