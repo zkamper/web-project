@@ -68,13 +68,14 @@ body {
 }
 
 .homepage #Practice,
-.homepage #Legislație {
+.homepage #Legislație .homepage #Login {
   color: #432981; /*standard color */
 }
 
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
 }
+
 .mediu-invatare #Practice {
   color: red; /* Red color for the learning environment page */
 }
@@ -104,14 +105,12 @@ body {
 /* pentru ecranele mici */
 @media (max-width: 600px) {
   .brand-title {
-    margin-top: 0rem;
+    margin-top: 0.5rem;
   }
   .toggle-button {
     display: flex;
   }
   .navbar-links {
-    background-color: #fafafa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: none;
     width: 100%;
   }
