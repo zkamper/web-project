@@ -71,7 +71,7 @@ $theGoodColor: #432981;
 }
 
 .homepage #Practice,
-.homepage #Legislație 
+.homepage #Legislație,
 .homepage #Login{
     color: #432981; /*standard color */
 }
@@ -81,6 +81,9 @@ $theGoodColor: #432981;
 }
 .mediu-invatare #Practice {
     color: red; /* Red color for the learning environment page */
+}
+.login-page #Login {
+    color: green; /* Green color for the login page */
 }
 
 //pentru mediu de invatare, voi adauga ceva similar

@@ -1,0 +1,26 @@
+$othersColor: #333333;
+$theGoodColor: #432981;
+$hoverColor: #553fcf;
+
+.main-content {
+    position: relative;
+    top: 19vh;
+    z-index: 1;
+    text-align: center;
+}
+
+.main-title {
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-size: 49px;
+    color: #060606;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
