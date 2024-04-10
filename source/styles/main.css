@@ -71,7 +71,7 @@ p:first-of-type {
     margin: 0;
 }
 
-/*remove the underline for the text*/
+/*remove the underline from the text*/
 a.image-text-container-link {
     text-decoration: none;
     color: inherit; /* Keep the text color as it is */

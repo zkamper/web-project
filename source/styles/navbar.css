@@ -68,12 +68,21 @@ body {
 }
 
 .homepage #Practice,
-.homepage #Legislație {
+.homepage #Legislație,
+.homepage #Login {
   color: #432981; /*standard color */
 }
 
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
+}
+
+.mediu-invatare #Practice {
+  color: red; /* Red color for the learning environment page */
+}
+
+.login-page #Login {
+  color: green; /* Green color for the login page */
 }
 
 .navbar-links li a:hover {
@@ -150,4 +159,6 @@ setez marginea la dreapta si culoarea individual
 #Login {
   margin-right: 2rem;
   color: #333333;
-}/*# sourceMappingURL=navbar.css.map */
+}
+
+/*în 'legislatie-only' page *//*# sourceMappingURL=navbar.css.map */
