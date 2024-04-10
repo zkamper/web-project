@@ -68,16 +68,12 @@ body {
 }
 
 .homepage #Practice,
-.homepage #Legislație .homepage #Login {
+.homepage #Legislație {
   color: #432981; /*standard color */
 }
 
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
-}
-
-.mediu-invatare #Practice {
-  color: red; /* Red color for the learning environment page */
 }
 
 .navbar-links li a:hover {

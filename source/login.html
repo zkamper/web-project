@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <script src="scripts/navbarScript.js" defer></script>
+    <script src="scripts/loginScript.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Mediu de învățare</title>
+</head>
+
+<body class="login-page">
+    <nav class="navbar">
+        <div class="brand-title"><a href="index.html">Traffic instructor</a></div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="mediu-invatare.html" id="Practice">Mediu de învățare</a></li>
+                <li><a href="prezentare-legislatie.html" id="Legislație">Legislație</a></li>
+                <li><a href="#" id="Login" class="active-link">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="main-content">
+            <div class="container">
+                <form action="#" class="container__form" id="login-form">
+                    <div class="main-title">Login</div>
+                    <div class="container__input input--email">
+                        <input type="email" id="email" name="email" required>
+                        <label for="username">Email</label>
+                    </div>
+                    <div class="container__input input--pass">
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="container__remember">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <div class="container__submit">
+                        <button class="submit-button" type="submit">Login</button>
+                    </div>
+                    <div class="container__register">
+                        <p>Don't have an account? <a href="#" id="register-link">Register</a></p>
+                    </div>
+                </form>
+
+                <form action="#" class="container__form form-hidden" id="register-form">
+                    <div class="main-title">Register</div>
+                    <div class="container__input input--username" name="username" id="username">
+                        <input type="text" id="username" name="username" required>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="container__input input--email">
+                        <input type="email" id="email" name="email" required>
+                        <label for="username">Email</label>
+                    </div>
+                    <div class="container__input input--pass">
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="container__submit">
+                        <button class="submit-button" type="submit">Register</button>
+                    </div>
+                    <div class="container__register">
+                        <p>Already have an account? <a href="#" id="login-link">Login</a></p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
