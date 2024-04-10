@@ -41,6 +41,7 @@ $theGoodColor: #432981;
 .brand-title{
     font-size: 2rem;
     margin-left: 2rem;
+    margin-top: 2rem;
 }
 
 .brand-title a {
@@ -57,6 +58,7 @@ $theGoodColor: #432981;
 
 .navbar-links li{
     list-style: none;
+    margin-top: 2rem;
 }
 
 .navbar-links li a{
@@ -69,12 +71,16 @@ $theGoodColor: #432981;
 }
 
 .homepage #Practice,
-.homepage #Legislație {
+.homepage #Legislație 
+.homepage #Login{
     color: #432981; /*standard color */
 }
 
 .legislatie-page #Legislație {
     color: yellow; /* Yellow color for the legislation page */
+}
+.mediu-invatare #Practice {
+    color: red; /* Red color for the learning environment page */
 }
 
 //pentru mediu de invatare, voi adauga ceva similar
@@ -104,6 +110,9 @@ $theGoodColor: #432981;
 // da, js-u merge, lasam la 600px
 /* pentru ecranele mici */
 @media (max-width: 600px) {
+    .brand-title {
+        margin-top: 0.5rem;
+    }
     .toggle-button{
         display: flex;
     }
@@ -125,11 +134,12 @@ $theGoodColor: #432981;
     }
 
     .navbar-links li{
+        margin-top: 0rem;
         text-align: center;
+        background-color: #f0f0f0;
     }
 
     .navbar-links li a:hover{
-        padding: 0.3rem 0.8rem;
         background-color: $theGoodColor;
     }
 
@@ -159,6 +169,3 @@ setez marginea la dreapta si culoarea individual
     margin-right: 2rem;
     color: $othersColor;
 }
-
-//ce-i mai jos este inca in testare
-/*în 'legislatie-only' page */

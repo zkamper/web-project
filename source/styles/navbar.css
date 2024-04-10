@@ -39,6 +39,7 @@ body {
 .brand-title {
   font-size: 2rem;
   margin-left: 2rem;
+  margin-top: 2rem;
 }
 
 .brand-title a {
@@ -54,6 +55,7 @@ body {
 
 .navbar-links li {
   list-style: none;
+  margin-top: 2rem;
 }
 
 .navbar-links li a {
@@ -66,12 +68,16 @@ body {
 }
 
 .homepage #Practice,
-.homepage #Legislație {
+.homepage #Legislație .homepage #Login {
   color: #432981; /*standard color */
 }
 
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
+}
+
+.mediu-invatare #Practice {
+  color: red; /* Red color for the learning environment page */
 }
 
 .navbar-links li a:hover {
@@ -98,6 +104,9 @@ body {
 
 /* pentru ecranele mici */
 @media (max-width: 600px) {
+  .brand-title {
+    margin-top: 0.5rem;
+  }
   .toggle-button {
     display: flex;
   }
@@ -115,10 +124,11 @@ body {
     flex-direction: column;
   }
   .navbar-links li {
+    margin-top: 0rem;
     text-align: center;
+    background-color: #f0f0f0;
   }
   .navbar-links li a:hover {
-    padding: 0.3rem 0.8rem;
     background-color: #432981;
   }
   .navbar-links.active {
@@ -144,6 +154,4 @@ setez marginea la dreapta si culoarea individual
 #Login {
   margin-right: 2rem;
   color: #333333;
-}
-
-/*în 'legislatie-only' page *//*# sourceMappingURL=navbar.css.map */
+}/*# sourceMappingURL=navbar.css.map */

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/prezentare-legislatie.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <script src="scripts/navbarScript.js" defer></script> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- defer, pentru ca vreau ca mai intai sa se afiseze continutul -->
@@ -12,7 +13,7 @@
 </head>
 <body class="legislatie-page">
     <nav class="navbar">
-        <div class="brand-title"><a href="index.html">Traffic instructor</a></div>
+        <div class="brand-title"><a href="traffic-instructor.html">Traffic instructor</a></div>
         <a href="#" class="toggle-button">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -27,22 +28,67 @@
         </div>
     </nav>
 
+    <!-- fara imagine, las fundalul de o culoare incerta apropiata de albastru si aia e   -->
     <main>
         <div class="main-content">
             <div class="main-title">Curs de legislație</div>
-        <!-- aici de adaugat o imagine pe fundal -->
-        <!--<img src="images/cel-bun.gif" alt="Animated GIF" class="animated-gif"> -->  
+
+            <div class="image-container">
+                <img src="images/imagine-fundal.JPG" alt="imagine-fundal-masini" class="image">
+                <!-- pentru ecranele 'mici', să nu rămână fără fundal :)) -->
+                <img src="images/imagine-fundal.JPG" alt="imagine-fundal-masini" class="duplicated-image">
+                
+                <div class="boxes-container">
+                    <div class="box">
+                        <h3>Cap. I</h3>
+                        <p>Dispoziții generale</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. II </h3>
+                        <p>Vehiculele</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. III</h3>
+                        <p>Conducătorii de vehicule</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. IV</h3>
+                        <p>Semnalizarea rutieră</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. V</h3>
+                        <p>Reguli de circulație</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. VI</h3>
+                        <p>Infracțiuni și pedepse</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. VII</h3>
+                        <p>Răspunderea contravențională</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. VIII</h3>
+                        <p>Dispoziții finale</p>
+                    </div>
+                    <div class="box">
+                        <h3>Cap. IX</h3>
+                        <p>Categorii de vehicule pentru care se eliberează permisul de conducere</p>
+                    </div>
+                </div>
+            </div>
         </div>
         
     </main>
 
-    <!--
+    
     <footer>
         <div class="footer-section">
            <p>Proiect realizat în cadrul cursului de 'Tehnolgii Web', de doi studenți neosteniți: Jiglău Gabriel 
             și Călin Ionuț, pentru a retrăi experiența primului examen auto.</p>
         </div>
     </footer>
-    -->
-</body>
+    
+
+    </body>
 </html>

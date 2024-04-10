@@ -1,21 +1,119 @@
 p:first-of-type {
-    margin-top: 20vh; /* cu 20vh, daca ar fi text imediat dupa navbar, inca ar fi 
-                        neacoperit de acesta */
+    margin-top: 20vh;
 }
 
 .main-content {
     position: relative;
-    top: 19vh; 
+    top: 28vh; 
     z-index: 1;
     text-align: center;
+    padding-bottom: 4vh; /* paddingu' lui Dumnezeu */
 }
 
 .main-title {
-    
     font-family: "Roboto", Helvetica, 'Helvetica Neue';
-    font-size: 49px;
+    font-size: 55px;
     color: #060606;
     letter-spacing: 1px;
-    margin-bottom: 15px;
+    margin-bottom: 5vh;
     font-weight: 300;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 5rem auto 5vh;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0; /* Adjusted margin-bottom */
+}
+
+.duplicated-image {
+    display: none;
+    width: 100%;
+    height: auto;
+}
+
+.boxes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 2; /* boxes are above the image */
+}
+
+.box {
+    flex: 0 0 calc(28% - 20px);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.box h3 {
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-size: 18px;
+    color: rgb(14, 14, 157);
+    margin-bottom: 3px;
+}
+
+.box p {
+    font-size: 16px;
+    margin-top: 5px;
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    margin-bottom: 5px;
+}
+
+
+/* smaller devices */
+@media (max-width: 768px) {
+
+    .main-content{
+        padding-bottom: 0vh;
+    }
+
+    .main-title {
+        font-size: 6vw;
+    }
+
+    .box {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .box:nth-child(9) { /* Targeting the ninth box */
+        flex: 0 0 50%; /* Making it full width */
+        margin-left: 8rem; /* Centering its content */
+    }
+
+    .image-container {
+        margin: 0;  
+    }
+
+    .image {
+        margin: 0;
+        height: 360px;
+    }
+   
+    .duplicated-image {
+        display: block;
+        margin: 0;
+        height: 360px;
+        margin-bottom: 30vh; /* Adjusted margin-bottom */
+    }
 }
