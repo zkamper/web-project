@@ -54,8 +54,8 @@ p:first-of-type {
 .box {
     flex: 0 0 calc(28% - 20px);
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    margin: 10px;
+    padding: 60px;
+    margin: 20px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 0.8rem;
@@ -64,6 +64,20 @@ p:first-of-type {
     justify-content: center;
     align-items: center;
     pointer-events: auto;
+    transition: transform 0.3s ease; /* Changed transition to transform */
+}
+
+a.image-text-container-link {
+    text-decoration: none;
+    color: inherit; /* Keep the text color as it is */
+    display: inline-block; /* Make it behave like an inline-block */
+    width: calc(30% - 20px); /* Width of the box */
+    margin: 10px; /* Margin to separate the boxes */
+    vertical-align: top; /* Align to the top */
+}
+
+.box:hover {
+    transform: scale(0.93); /* Shrink the box size on hover */
 }
 
 .box h3 {
@@ -80,11 +94,13 @@ p:first-of-type {
     margin-bottom: 5px;
 }
 
-
+/* box-urile nu sunt perfecte, nici macar la dimensiune mica, dar ar fi relativ ok */
+/* ,si mai este o problema cu width-u pe la 1080-1200px, unde imaginea a doua
+    dispare, iar box-urile raman in afara imaginii singure
+*/
 /* smaller devices */
 @media (max-width: 768px) {
-
-    .main-content{
+    .main-content {
         padding-bottom: 0vh;
     }
 
@@ -92,14 +108,24 @@ p:first-of-type {
         font-size: 6vw;
     }
 
-    .box {
-        flex: 0 0 calc(50% - 20px);
+    a.image-text-container-link {
+        text-decoration: none;
+        color: inherit; /* Keep the text color as it is */
+        display: inline-block; /* Make it behave like an inline-block */
+        width: calc(40% - 20px); /* Width of the box */
+        margin: 5px; /* Margin to separate the boxes */
+        vertical-align: top; /* Align to the top */
     }
 
-    .box:nth-child(9) { /* Targeting the ninth box */
-        flex: 0 0 50%; /* Making it full width */
-        margin-left: 8rem; /* Centering its content */
+    .box {
+        flex: 0 0 calc(25% - 10px);
+        padding: 0px;
     }
+
+    /*.box:nth-child(9) {
+        flex: 0 0 50%; 
+        margin-left: 8rem; 
+    }*/
 
     .image-container {
         margin: 0;  
@@ -114,6 +140,6 @@ p:first-of-type {
         display: block;
         margin: 0;
         height: 360px;
-        margin-bottom: 30vh; /* Adjusted margin-bottom */
+        margin-bottom: 30vh;
     }
 }
