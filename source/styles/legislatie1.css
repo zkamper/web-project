@@ -1,4 +1,48 @@
-a.image-text-container-link {
+.main-container {
+    display: flex;
+}
+
+.left-container {
+    flex: 0 0 20%; /* 20% width */
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Adjust as needed */
+    background-color: #f4f4f4; /* Same color as box */
+    padding: 20px;
+}
+
+.left-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-container li {
+    margin-bottom: 10px;
+}
+
+.left-container a {
     text-decoration: none;
-    color: inherit; /* Keep the text color as it is */
+    color: #333;
+    font-size: 18px;
+}
+
+.right-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4; /* Same color as box */
+}
+
+.right-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.right-container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.right-container .larger-text {
+    font-size: 20px;
+    line-height: 1.6;
 }
