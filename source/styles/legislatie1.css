@@ -1,48 +1,86 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
 .main-container {
     display: flex;
 }
 
 .left-container {
-    flex: 0 0 20%; /* 20% width */
-    position: sticky;
-    top: 0;
-    height: 100vh; /* Adjust as needed */
-    background-color: #f4f4f4; /* Same color as box */
-    padding: 20px;
+    position: fixed;
+    top: 11.88rem; 
+    left: 3rem; 
+    width: 15%; 
+    background-color: #272e8c;
+    color: aliceblue;
+    padding: 10px;
+    overflow-y: auto; /* Keep the scroll if content overflows */
+    z-index: 1; /* Ensure it's above other content */
 }
 
 .left-container ul {
     list-style-type: none;
     padding: 0;
+    margin: 0; /* Remove default margin */
+    max-height: calc(100vh - 60px - 20px); /* Adjusted max height to accommodate navbar and padding */
 }
 
 .left-container li {
     margin-bottom: 10px;
+    text-align: left; /* Align the text to the left */
 }
 
 .left-container a {
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
     text-decoration: none;
-    color: #333;
-    font-size: 18px;
+    color: aliceblue;
+    font-size: 13px;
+    display: block; /* anchor tags are now block-level elements */
+    padding: 10px 15px;
+    width: 100%;
+    text-align: left; 
+}
+
+.article-number {
+    margin-top: 0.42rem;
+    font-size: 26px;
+    font-weight: bold;
+    color: #181f82;
+    display: block; /*block level behavior */
+    text-align: left;
 }
 
 .right-container {
-    flex: 1;
+    margin-left: 20%; /* Adjusted margin to start closer to the sidebar */
+    margin-top: 1.42rem;
+    margin-bottom: 2rem; 
     padding: 20px;
-    background-color: #f4f4f4; /* Same color as box */
+    background-color: rgb(255, 255, 255);
 }
 
 .right-container h1 {
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
 }
 
 .right-container h2 {
     font-size: 24px;
-    margin-bottom: 15px;
+    margin-bottom: 2.5rem;
+    margin-right: 1.2rem;
 }
 
 .right-container .larger-text {
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
     font-size: 20px;
     line-height: 1.6;
+    text-align: left;
+}
+
+.larger-text {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 1.2rem; 
+    margin-right: 1.2rem;
 }
