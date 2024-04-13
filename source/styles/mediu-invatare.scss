@@ -153,3 +153,43 @@ $hoverColor: #553fcf;
         text-align: justify;
     }
 }
+
+@media (max-width: 600px) {
+    .main-content {
+        top: 10vh;
+    }
+    .main-title {
+        font-size: 30px;
+    }
+    .main-container__answer {
+        font-size: 20px;
+        p {
+            margin: 0 0.5rem;
+        }
+        .answer-button {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+    .main-container__question {
+        font-size: 20px;
+        p {
+            font-size: 15px;
+        }
+        flex-direction: row;
+    }
+    .main-container__image {
+        img {
+            width: 30vh;
+            height: 30vh;
+        }
+    }
+    .main-container__answers-and-question {
+        width: 90%;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .submit-button {
+        margin-bottom: 1rem;
+    }
+}
