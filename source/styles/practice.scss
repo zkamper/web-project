@@ -1,0 +1,73 @@
+$othersColor: #333333;
+$theGoodColor: #432981;
+$hoverColor: #553fcf;
+
+.main-content {
+    position: relative;
+    top: 19vh;
+    z-index: 1;
+    text-align: center;
+}
+
+.main-title {
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-size: 49px;
+    color: #060606;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.main-container {
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-size: 30px;
+    color: #060606;
+    letter-spacing: 1px;
+    font-weight: 300;
+    h2 {
+        margin-bottom: 15px;
+        color: $theGoodColor;
+    }
+    p {
+        margin: 0;
+    }
+    .sections {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    ul,ol {
+        padding: 0;
+    }
+    ul {
+        list-style-type: none;
+    }
+    li {
+        margin-bottom: 20px;
+        a {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-decoration: none;
+            color: $othersColor;
+            font-size: 20px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 3px;
+            &:hover {
+                background-color: $hoverColor;
+                color: #f0f0f0;
+            }
+        }
+    }
+}

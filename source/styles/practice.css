@@ -1,0 +1,69 @@
+.main-content {
+  position: relative;
+  top: 19vh;
+  z-index: 1;
+  text-align: center;
+}
+
+.main-title {
+  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-size: 49px;
+  color: #060606;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.main-container {
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-size: 30px;
+  color: #060606;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+.main-container h2 {
+  margin-bottom: 15px;
+  color: #432981;
+}
+.main-container p {
+  margin: 0;
+}
+.main-container .sections {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.main-container ul, .main-container ol {
+  padding: 0;
+}
+.main-container ul {
+  list-style-type: none;
+}
+.main-container li {
+  margin-bottom: 20px;
+}
+.main-container li a {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-decoration: none;
+  color: #333333;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 3px;
+}
+.main-container li a:hover {
+  background-color: #553fcf;
+  color: #f0f0f0;
+}/*# sourceMappingURL=practice.css.map */
