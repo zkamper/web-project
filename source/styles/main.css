@@ -112,6 +112,9 @@ a.image-text-container-link {
     .image-text-container {
         flex-direction: column; /* Stack items vertically */
     }
+    .main-content {
+        top: 20vh; /*value based on the height of the navbar */
+    }
 
     .half-text, .half-text-2 {
         width: 100%;

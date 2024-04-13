@@ -118,6 +118,7 @@ $theGoodColor: #432981;
     }
     .toggle-button{
         display: flex;
+        top: 2rem;
     }
 
     .navbar-links{
@@ -126,30 +127,27 @@ $theGoodColor: #432981;
     }
 
     .navbar{
+        padding-top: 1rem;
         flex-direction: column;
         align-items: flex-start;
         height: 8vh;
     }
 
-    .navbar-links ul{
-        width: 100%;
-        flex-direction: column;
+    .navbar-links {
+        ul{
+            width: 100%;
+            flex-direction: column;
+        }
+        li{
+            margin-top: 0rem;
+            text-align: center;
+            background-color: #f0f0f0;
+            
+        }
     }
-
-    .navbar-links li{
-        margin-top: 0rem;
-        text-align: center;
-        background-color: #f0f0f0;
-    }
-
-    .navbar-links li a:hover{
-        background-color: $theGoodColor;
-    }
-
     .navbar-links.active{
         display: flex;
     }
-
     .navbar::before{
         height: 1vh;
     }
