@@ -73,6 +73,7 @@ body {
   color: #432981; /*standard color */
 }
 
+.cap1-legislatie #Legislație,
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
 }
@@ -158,6 +159,4 @@ setez marginea la dreapta si culoarea individual
 #Login {
   margin-right: 2rem;
   color: #333333;
-}
-
-/*în 'legislatie-only' page *//*# sourceMappingURL=navbar.css.map */
+}/*# sourceMappingURL=navbar.css.map */
