@@ -74,12 +74,12 @@ body {
 }
 
 .cap1-legislatie #Legislație,
-.cap1-legislatie #Legislație,
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
 }
 
-.mediu-invatare #Practice {
+.mediu-invatare #Practice,
+.practice #Practice {
   color: red; /* Red color for the learning environment page */
 }
 
@@ -147,26 +147,4 @@ body {
   .navbar::before {
     height: 1vh;
   }
-}
-/*
-setez marginea la dreapta si culoarea individual
-*/
-#Practice {
-  margin-right: 2rem;
-  color: #333333;
-}
-
-#Legislație {
-  margin-right: 2rem;
-  color: #333333;
-}
-
-#Login {
-  margin-right: 2rem;
-  color: #333333;
-}
-
-#User {
-  margin-right: 2rem;
-  color: #333333;
 }/*# sourceMappingURL=navbar.css.map */
