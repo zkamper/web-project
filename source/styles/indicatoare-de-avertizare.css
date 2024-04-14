@@ -37,6 +37,6 @@ body, html {
     .image-container {
         grid-template-columns: 1fr; /* One image per row for screens smaller than 768px */
         justify-content: center; /* Center align images */
-        margin-left: 0; /* Remove left margin */
+        margin-left: 3.5rem; /* Remove left margin */
     }
 }
