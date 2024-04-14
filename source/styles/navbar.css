@@ -73,6 +73,7 @@ body {
   color: #432981; /*standard color */
 }
 
+.cap1-legislatie #Legislație,
 .legislatie-page #Legislație {
   color: yellow; /* Yellow color for the legislation page */
 }
@@ -83,6 +84,10 @@ body {
 
 .login-page #Login {
   color: green; /* Green color for the login page */
+}
+
+.user-page #User {
+  color: green;
 }
 
 .navbar-links li a:hover {
@@ -160,4 +165,7 @@ setez marginea la dreapta si culoarea individual
   color: #333333;
 }
 
-/*în 'legislatie-only' page *//*# sourceMappingURL=navbar.css.map */
+#User {
+  margin-right: 2rem;
+  color: #333333;
+}/*# sourceMappingURL=navbar.css.map */

@@ -86,6 +86,9 @@ $theGoodColor: #432981;
 .login-page #Login {
     color: green; /* Green color for the login page */
 }
+.user-page #User {
+    color: green;
+}
 
 //pentru mediu de invatare, voi adauga ceva similar
 
@@ -168,6 +171,11 @@ setez marginea la dreapta si culoarea individual
 }
 
 #Login{
+    margin-right: 2rem;
+    color: $othersColor;
+}
+
+#User{
     margin-right: 2rem;
     color: $othersColor;
 }
