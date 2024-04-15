@@ -1,0 +1,18 @@
+.progress-chestionar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.progress-chestionar p {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 3px;
+}
+.progress-chestionar .progress-chestionar__value {
+  font-family: "Roboto", sans-serif;
+  color: gray;
+  padding: 3px;
+  margin: 0;
+}/*# sourceMappingURL=quiz.css.map */

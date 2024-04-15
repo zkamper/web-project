@@ -30,13 +30,35 @@ $hoverColor: #553fcf;
     color: #060606;
     letter-spacing: 1px;
     font-weight: 300;
+
     h2 {
         margin-bottom: 15px;
         color: $theGoodColor;
     }
+
     p {
         margin: 0;
     }
+
+    a {
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-decoration: none;
+        color: $othersColor;
+        font-size: 20px;
+        font-weight: 300;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 5px;
+        margin: 0 auto;
+        margin-top: 30px;
+        width: 50%;
+        &:hover {
+            background-color: $hoverColor;
+            color: #f0f0f0;
+        }
+    }
+
     .sections {
         margin: 0;
         padding: 0;
@@ -45,29 +67,48 @@ $hoverColor: #553fcf;
         align-items: center;
         flex-direction: column;
         margin-top: 20px;
+
+        p {
+            margin: 0;
+            text-align: justify;
+        }
     }
-    ul,ol {
+
+    ol {
         padding: 0;
     }
-    ul {
-        list-style-type: none;
-    }
-    li {
-        margin-bottom: 20px;
-        a {
-            background-color: #f0f0f0;
-            padding: 10px;
-            text-decoration: none;
-            color: $othersColor;
+
+    .sections__search-bar {
+        margin-top: 0.5rem;
+        display: flex;
+        width: max-content;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .search-bar__container {
+            position: relative;
+            .search-icon {
+                position: absolute;
+                top: 50%;
+                right: 10px; /* Adjust as needed */
+                transform: translateY(-50%);
+                width: 24px; /* Adjust as needed */
+                height: 24px; /* Adjust as needed */
+                fill: #333; /* Adjust as needed */
+              }
+        }
+
+        input {
+            font-family: "Roboto", Helvetica, 'Helvetica Neue';
             font-size: 20px;
+            color: #060606;
+            letter-spacing: 1px;
             font-weight: 300;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 3px;
-            &:hover {
-                background-color: $hoverColor;
-                color: #f0f0f0;
-            }
+            padding: 0.5rem 1rem;
+            border: 1px solid #060606;
+            border-radius: 5px;
+            width: 100%;
         }
     }
 }

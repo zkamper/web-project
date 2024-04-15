@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/mediu-invatare.css">
+    <link rel="stylesheet" href="styles/quiz.css">
+    <script src="scripts/navbarScript.js" defer></script> 
+    <script src="scripts/practiceScript.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Chestionar</title>
+</head>
+<body class = "quiz-page">
+    <nav class="navbar">
+        <div class="brand-title"><a href="traffic-instructor.html">Traffic instructor</a></div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="#" id="Practice" class="active-link">Mediu de învățare</a></li>
+                <li><a href="indicatoare-rutiere.html" id="Indicatoare-rutiere">Indicatoare Rutiere</a></li>
+                <li><a href="prezentare-legislatie.html" id="Legislație">Legislație</a></li>
+                <li><a href="login.html" id="Login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="main-content">
+            <div class="main-title">Chestionar</div>
+            <div class="progress-chestionar" id="progress" value="14">
+                <p>Întrebări rezolvate: </p><div class="progress-chestionar__value">14</div><p>/</p><p>26</p>
+            </div>
+            <div class="main-container">
+                <div class="main-container__answers-and-question">
+                    <div class="main-container__answers">
+                        <div class="main-container__answer">
+                            <button class="answer-button" id="answer-a">A</button>
+                            <p>Raspunsul A</p>
+                        </div>
+                        <div class="main-container__answer">
+                            <button class="answer-button" id="answer-b">B</button>
+                            <p>Raspunsul B</p>
+                        </div>
+                        <div class="main-container__answer">
+                            <button class="answer-button" id="answer-c">C</button>
+                            <p>Raspunsul C</p>
+                        </div>
+                    </div>
+                    <div class="main-container__question">
+                        <p>Aici va fi întrebarea, care poate avea una sau mai multe variante de răspuns. Eventual, aceasta poate fi acompaniată de o imagine.</p>
+                    </div>
+                    <div class="main-container__image">
+                        <img src="images/quiz/test.jpg" alt="Imaginea întrebării">
+                    </div>
+                </div>
+                <div class="main-container__submit">
+                    <button class="submit-button prev"><</button>
+                    <button class="submit-button">Verifică răspuns</button>
+                    <button class="submit-button next">></button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
