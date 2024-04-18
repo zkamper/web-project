@@ -14,40 +14,40 @@ body, html {
 
 .image-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three images per row */
-    grid-gap: 4rem;
-    justify-content: flex-end; /* Adjusted to push images to the right */
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    justify-content: flex-end;
+    margin-left: 2.3rem;
     margin-top: 0.3rem;
-    margin: 0 auto;
-    align-items: center;
 }
 
-.image-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.image-container a {
+    display: block; /*  anchor tags behave like block elements */
+    position: relative;
 }
 
-.image-wrapper img {
-    height: 333px;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    transition: transform 0.3s ease; /* Transition effect for hover */
+.image-container img {
+    max-width: 80%;
+    height: auto;
+    transition: transform 0.3s ease; /* Transition effect */
+    position: relative;
+    z-index: 1; /*images stay above the text */
 }
 
-.image-wrapper img:hover {
+.image-container img:hover {
     transform: scale(0.95); /* Shrink the image on hover */
 }
 
 .image-title {
     font-family: "Roboto", Helvetica, 'Helvetica Neue';
     font-size: 28px;
-    color: #221191; /* Text color */
-    margin-bottom: 0.5rem; /* Space between title and description */
-    text-align: center; /* Center-align text */
-    max-width: 90%; /* Maximum width for the title */
-    margin-left: auto; /* Auto margin to center the title */
-    margin-right: auto; /* Auto margin to center the title */
+    color: #221191; 
+    margin-bottom: 0.5rem;
+    text-align: center;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto; 
+    z-index: 2; /* title stays above the image */
 }
 
 .image-description {
@@ -55,16 +55,34 @@ body, html {
     font-size: 16px;
     color: #0b0b0b;
     text-align: center;
-    max-width: 90%; /* Maximum width for the description */
-    margin-left: auto; /* Auto margin to center the description */
-    margin-right: auto; /* Auto margin to center the description */
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto; 
+    z-index: 2; 
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem;
+    border-radius: 5px;
 }
 
-/*smaller screens */
+/* Smaller screens */
 @media (max-width: 768px) {
     .image-container {
-        grid-template-columns: 1fr; /* One image per row for screens smaller than 768px */
-        justify-content: center; /* Center align images */
-        margin-left: 0.5rem; /* Remove left margin */
+        grid-template-columns: 1fr; /* One image per row */
+        justify-content: center;
+        margin-left: 0; 
+    }
+
+    .image-container img {
+        max-width: 100%;
+    }
+
+    .image-container .image-title {
+        position: static;
+        margin-top: 1rem;
+    }
+
+    .image-container .image-description {
+        position: static;
+        margin-top: 0.5rem; 
     }
 }
