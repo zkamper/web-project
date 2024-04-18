@@ -1,0 +1,22 @@
+{
+    "name": "proiect-tehnologii-web",
+    "version": "1.0.0",
+    "description": "web application to learn legislation and signs from Romania",
+    "main": "index.js",
+    "scripts": {
+        "start": "node elServerino.js",
+        "dev": "nodemon elServerino.js"
+    },
+    "keywords": [
+        "web application",
+        "legislation",
+        "traffic signs",
+        "Romania",
+        "learning"
+    ],
+    "author": "Calin Ionut și Jiglau Gabriel",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}
