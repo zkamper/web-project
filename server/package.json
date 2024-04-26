@@ -4,8 +4,8 @@
     "description": "web application to learn legislation and signs from Romania",
     "main": "index.js",
     "scripts": {
-        "start": "node elServerino.js",
-        "dev": "nodemon elServerino.js"
+        "start": "node server.js",
+        "dev": "nodemon server.js"
     },
     "keywords": [
         "web application",
