@@ -3,8 +3,9 @@ const http = require('https');
 const { JSDOM } = require('jsdom');
 const mongoose= require('mongoose');
 const HOST = process.env.MONGO_HOST;
-const { Law , Image} = require('./schemas');
 const { TO_SCRAPE_LAW, TO_SCRAPE_IMG } = require('./links');
+const Law = require("../models/law_model");
+const Image = require("../models/image_model");
 
 main().then(() => {
     console.log('Connected to MongoDB');
