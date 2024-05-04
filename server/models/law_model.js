@@ -12,5 +12,4 @@ const lawSchema = new Schema(
 );
 
 const Law = mongoose.model('Law', lawSchema);
-
 module.exports = Law;
