@@ -3,10 +3,6 @@ body, html {
     padding: 0;
 }
 
-.main-container {
-    display: flex;
-}
-
 .left-container {
     position: fixed;
     top: 11.88rem; 
@@ -49,6 +45,10 @@ body, html {
     color: #181f82;
     display: block; /*block level behavior */
     text-align: left;
+}
+
+.right-container-template{
+    
 }
 
 .right-container {
