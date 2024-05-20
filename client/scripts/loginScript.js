@@ -1,8 +1,8 @@
-var registerLink = document.getElementById('register-link');
-var loginLink = document.getElementById('login-link');
+const registerLink = document.getElementById('register-link');
+const loginLink = document.getElementById('login-link');
 
-var registerForm = document.getElementById('register-form');
-var loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+const loginForm = document.getElementById('login-form');
 
 console.log(registerForm)
 console.log(loginForm)
