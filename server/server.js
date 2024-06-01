@@ -1,6 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const getLawsBySection = require('./controllers/law_controller').getLawsBySection;
+const getImageBySection = require('./controllers/image_controller').getImageBySection;
 const http = require('http');
 const url = require('url');
 const PORT = process.env.PORT || 3456;
@@ -29,7 +30,11 @@ const makeServer = async () => {
         // GET /api/laws/:section
         if (method === 'GET' && path.startsWith('/api/laws/')) {
             const section = path.split('/')[3];
-            await getLawsBySection(res,req,section);
+            await getLawsBySection(res, req, section);
+        }
+        else if (method === 'GET' && path.startsWith('/api/indicatoare')){
+            const section = path.split('/')[3];
+            await getImageBySection(res, req, section)
         }
     })
     server.listen(PORT, (error) => {

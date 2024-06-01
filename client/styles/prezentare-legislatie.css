@@ -106,11 +106,6 @@ a.image-text-container-link {
         flex: 0 0 calc(50% - 20px);
     }
 
-    .box:nth-child(9) { /* Targeting the ninth box */
-        flex: 0 0 50%; /* Making it full width */
-        margin-left: 8rem; /* Centering its content */
-    }
-
     .image-container {
         margin: 0;  
     }

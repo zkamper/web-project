@@ -45,75 +45,75 @@ const TO_SCRAPE_LAW = [
 
 const TO_SCRAPE_IMG = [
     {
-        name: '1-avertizare',
+        name: '1_avertizare',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-avertizare'
     },
     {
-        name: '2-interzicere',
+        name: '2_interzicere',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-interzicere-sau-restrictie'
     },
     {
-        name: '3-prioritate',
+        name: '3_prioritate',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-prioritate'
     },
     {
-        name: '4-obligare',
+        name: '4_obligare',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-obligare'
     },
     {
-        name: '5-informare',
+        name: '5_informare',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-informare'
     },
     {
-        name: '6-orientare',
+        name: '6_orientare',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-orientare'
     },
     {
-        name: '7-turistic',
+        name: '7_turistic',
         url: 'https://www.codrutier.ro/semne-de-circulatie/de-informare-turistica'
     },
     {
-        name: '8-semnale-luminoase',
+        name: '8_semnale_luminoase',
         url: 'https://www.codrutier.ro/semne-de-circulatie/semnale-luminoase'
     },
     {
-        name: '9-cale-ferata',
+        name: '9_cale_ferata',
         url: 'https://www.codrutier.ro/semne-de-circulatie/indicatoare-instalate-la-trecerea-cu-calea-ferata'
     },
     {
-        name: '10-kilometrice',
+        name: '10_kilometrice',
         url: 'https://www.codrutier.ro/semne-de-circulatie/indicatoare-kilometrice'
     },
     {
-        name: '11-semnalizare-lucrari',
+        name: '11_semnalizare_lucrari',
         url: 'https://www.codrutier.ro/semne-de-circulatie/mijloace-auxiliare-de-semnalizare-a-lucrarilor'
     },
     {
-        name: '12-benzi-reversibile',
+        name: '12_benzi_reversibile',
         url: 'https://www.codrutier.ro/semne-de-circulatie/dispozitive-luminoase-pentru-dirijarea-circulatiei-pe-benzi-reversibile'
     },
     {
-        name: '13-marcaje-longitudinale',
+        name: '13_marcaje_longitudinale',
         url: 'https://www.codrutier.ro/semne-de-circulatie/marcaje-longitudinale'
     },
     {
-        name: '14-marcaje-transversale',
+        name: '14_marcaje_transversale',
         url: 'https://www.codrutier.ro/semne-de-circulatie/marcaje-transversale'
     },
     {
-        name: '15-marcaje-diverse',
+        name: '15_marcaje_diverse',
         url: 'https://www.codrutier.ro/semne-de-circulatie/marcaje-diverse'
     },
     {
-        name: '16-marcaje-laterale',
+        name: '16_marcaje_laterale',
         url: 'https://www.codrutier.ro/semne-de-circulatie/marcaje-laterale'
     },
     {
-        name: '17-marcaje-temporare',
+        name: '17_marcaje_temporare',
         url: 'https://www.codrutier.ro/semne-de-circulatie/marcaje-temporare-pentru-semnalizarea-lucrarilor-in-zona-drumului-public'
     },
     {
-        name: '18-indicatii-agenti',
+        name: '18_indicatii_agenti',
         url: 'https://www.codrutier.ro/semne-de-circulatie/semnalele-politistului-rutier'
     }
 ]
