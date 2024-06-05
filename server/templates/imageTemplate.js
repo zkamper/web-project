@@ -1,3 +1,7 @@
+//exemplu de construire dinamica a HTML-ului pentru imagini
+
+//TO-DO : move it inside client/scripts/fetchImage.js
+
 function renderArticle(imageSources, imageTitles, imageDescriptions, pageTitle) {
     // Get the container element where the images will be appended
     let containerDiv = document.querySelector(".main-content");
