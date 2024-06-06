@@ -32,18 +32,17 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 5vh; /* Height of the blue padding */
+  height: 1rem;
   background: linear-gradient(to right, #411d96, #2b35bf, rgb(113, 62, 232)); /*#411d96, #6f3be8*/
   z-index: -1; /* Behind the navbar */
 }
 
 .brand-title {
   font-size: 2rem;
-  margin-left: 2rem;
-  margin-top: 2rem;
 }
 
 .brand-title a {
+  margin: 0.5rem;
   text-decoration: none; /* remove the underline */
   color: inherit;
 }
@@ -56,13 +55,12 @@ body {
 
 .navbar-links li {
   list-style: none;
-  margin-top: 2rem;
 }
 
 .navbar-links li a {
   text-decoration: none;
-  padding: 0.8rem;
   color: #333333;
+  margin: 0.5rem;
   display: block;
   font-size: 1.3rem;
   text-align: center;
@@ -113,9 +111,6 @@ body {
 
 /* pentru ecranele mici */
 @media (max-width: 600px) {
-  .brand-title {
-    margin-top: 0.5rem;
-  }
   .toggle-button {
     display: flex;
   }
