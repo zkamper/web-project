@@ -14,7 +14,8 @@ body {
   top: 0; /* Positioned at the top */
   left: 0;
   width: 100%;
-  height: 16vh;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,9 +102,6 @@ body {
   right: 1rem;
   display: none; /*mai incolo il schimbi in 'flex'*/
   flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
 }
 
 .toggle-button .bar {
@@ -120,17 +118,15 @@ body {
   }
   .toggle-button {
     display: flex;
-    top: 2rem;
   }
   .navbar-links {
     display: none;
     width: 100%;
   }
   .navbar {
-    padding-top: 1rem;
     flex-direction: column;
     align-items: flex-start;
-    height: 8vh;
+    justify-content: center;
   }
   .navbar-links ul {
     width: 100%;

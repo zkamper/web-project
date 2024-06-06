@@ -16,7 +16,7 @@ $theGoodColor: #432981;
     top: 0;          /* Positioned at the top */
     left: 0;
     width: 100%;
-    height: 16vh;
+    height: fit-content;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,6 +26,7 @@ $theGoodColor: #432981;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Bottom shadow */
     z-index: 1000;   /* To ensure it appears above other elements */
 }
+
 
 .navbar::before {
     content: '';
@@ -103,9 +104,6 @@ $theGoodColor: #432981;
     right: 1rem;
     display: none; /*mai incolo il schimbi in 'flex'*/
     flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
 }
 
 .toggle-button .bar{
@@ -123,7 +121,6 @@ $theGoodColor: #432981;
     }
     .toggle-button{
         display: flex;
-        top: 2rem;
     }
 
     .navbar-links{
@@ -132,10 +129,9 @@ $theGoodColor: #432981;
     }
 
     .navbar{
-        padding-top: 1rem;
         flex-direction: column;
         align-items: flex-start;
-        height: 8vh;
+        justify-content: center;
     }
 
     .navbar-links {
