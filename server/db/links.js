@@ -118,7 +118,10 @@ const TO_SCRAPE_IMG = [
     }
 ]
 
+const START_LINK = 'https://www.scoalarutiera.ro/intrebari-posibile-drpciv-categoria-b/1151/ce-indica-semnalul-agentului-de-circulatie'
+
 module.exports = {
     TO_SCRAPE_LAW,
-    TO_SCRAPE_IMG
+    TO_SCRAPE_IMG,
+    START_LINK
 }

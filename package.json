@@ -1,10 +1,11 @@
 {
   "name": "web-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Proiect pentru materia tehnologii web - tema RoT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cd server && node server.js",
+    "scraper1": "cd server/db && node web_scraper.js",
+    "scraper2": "cd server/db && node question_scraper.js"
   },
   "repository": {
     "type": "git",
