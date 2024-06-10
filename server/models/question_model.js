@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const answerSchema = new Schema({
+    key: {
+        type: Number,
+        required: true
+    },
     value: {
         type: String,
         required: true

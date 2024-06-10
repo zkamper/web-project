@@ -28,9 +28,10 @@ const scrapeQuestion = async (data, id) => {
     questionModel.title = title;
     questionModel.image = imgURL;
 
-    answers.forEach((answer) => {
+    answers.forEach((answer,key) => {
         let correctAnswer = parseInt(answer.getAttribute('data-correct'));
         questionModel.answers.push({
+            key: key,
             value: answer.textContent, 
             correct: correctAnswer
         });
