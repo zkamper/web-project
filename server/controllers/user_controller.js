@@ -59,8 +59,8 @@ const handleLogin = async (res, req) => {
         }
         try {
             const parsedBody = JSON.parse(body);
-            const { username, password } = parsedBody;
-            let user = await User.findOne({ username });
+            const { email, password } = parsedBody;
+            let user = await User.findOne({ email });
             if (!user) {
                 handleResponse(res, 400, {error: 'Invalid credentials'});
                 return;

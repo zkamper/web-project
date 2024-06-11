@@ -8,5 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="crypto-js" level="application" />
+    <orderEntry type="library" name="2451e89b81" level="application" />
+    <orderEntry type="library" name="bcryptjs" level="application" />
   </component>
 </module>
