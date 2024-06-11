@@ -6,9 +6,12 @@ const getImageBySection = require('./controllers/image_controller').getImageBySe
 const getRandomQuestion = require('./controllers/question_controller').getRandomQuestion;
 const getQuestionById = require('./controllers/question_controller').getQuestionById;
 const checkQuestionAnswers = require('./controllers/question_controller').checkQuestionAnswers;
+const handleRegister = require('./controllers/user_controller').handleRegister;
+const User = require('./models/user_model');
 
 const http = require('http');
 const url = require('url');
+const {handleLogin} = require("./controllers/user_controller");
 const PORT = process.env.PORT || 3456;
 
 main().then(() => {
@@ -20,6 +23,7 @@ main().then(() => {
 async function main() {
     try {
         await mongoose.connect(process.env.MONGO_HOST);
+        await User.createCollection();
         await makeServer();
     } catch (error) {
         console.log('Error connecting to MongoDB: ' + error);
@@ -78,7 +82,12 @@ const makeServer = async () => {
                 }
             });
         }
-        
+        else if (method === 'POST' && path === '/api/register') {
+            await handleRegister(res, req);
+        }
+        else if (method === 'POST' && path === '/api/login') {
+            await handleLogin(res, req);
+        }
         //all the other requests
         else {
             res.writeHead(404, { 'Content-Type': 'application/json' });

@@ -1,4 +1,3 @@
-
 //ii)testat functia per total
 async function renderImages() {
     try {

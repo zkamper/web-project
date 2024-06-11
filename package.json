@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "cd server && node server.js",
     "scraper1": "cd server/db && node web_scraper.js",
-    "scraper2": "cd server/db && node question_scraper.js"
+    "scraper2": "cd server/db && node question_scraper.js",
+    "reload": "cd nginx && .\\nginx.exe -s reload"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "jsdom": "^24.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.3"
   }
