@@ -1,7 +1,12 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+
 const getLawsBySection = require('./controllers/law_controller').getLawsBySection;
 const getImageBySection = require('./controllers/image_controller').getImageBySection;
+const getRandomQuestion = require('./controllers/question_controller').getRandomQuestion;
+const getQuestionById = require('./controllers/question_controller').getQuestionById;
+const checkQuestionAnswers = require('./controllers/question_controller').checkQuestionAnswers;
+
 const http = require('http');
 const url = require('url');
 const PORT = process.env.PORT || 3456;
@@ -35,6 +40,49 @@ const makeServer = async () => {
         else if (method === 'GET' && path.startsWith('/api/indicatoare')){
             const section = path.split('/')[3];
             await getImageBySection(res, req, section)
+        } 
+        
+        //GET /api/question/random
+        else if(method === 'GET' && path === '/api/question/random'){
+            await getRandomQuestion(res, req);
+        }
+
+        //GET /api/question/:id
+        else if (method === 'GET' && path.startsWith('/api/question/')) {
+            const id = path.split('/')[3];
+            await getQuestionById(res, req, id);
+        }
+
+        //POST /api/question/:id
+        else if (method === 'POST' && path.startsWith('/api/question/')) {
+            const id = path.split('/')[3];
+            let body = '';
+        
+            req.on('data', chunk => {
+                body += chunk.toString();
+            });
+        
+            req.on('end', async () => {
+                //try-catch since the body might now be always a valid int
+                try {
+                    const parsedBody = JSON.parse(body);
+                    if (!Array.isArray(parsedBody.answers) || !parsedBody.answers.every(Number.isInteger)) {
+                        throw new Error('Invalid input');
+                    }
+                    const { answers } = parsedBody;
+                    await checkQuestionAnswers(res, id, answers);
+                } catch (error) {
+                    console.error('Invalid input:', error);
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Invalid input: answers must be an array of integers' }));
+                }
+            });
+        }
+        
+        //all the other requests
+        else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Not found' }));
         }
     })
     server.listen(PORT, (error) => {
