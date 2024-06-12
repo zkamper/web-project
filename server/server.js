@@ -63,27 +63,7 @@ const makeServer = async () => {
         //POST /api/question/:id
         else if (method === 'POST' && path.startsWith('/api/question/')) {
             const id = path.split('/')[3];
-            let body = '';
-        
-            req.on('data', chunk => {
-                body += chunk.toString();
-            });
-        
-            req.on('end', async () => {
-                //try-catch since the body might now be always a valid int
-                try {
-                    const parsedBody = JSON.parse(body);
-                    if (!Array.isArray(parsedBody.answers) || !parsedBody.answers.every(Number.isInteger)) {
-                        throw new Error('Invalid input');
-                    }
-                    const { answers } = parsedBody;
-                    await checkQuestionAnswers(res, id, answers);
-                } catch (error) {
-                    console.error('Invalid input:', error);
-                    res.writeHead(400, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ error: 'Invalid input: answers must be an array of integers' }));
-                }
-            });
+            await checkQuestionAnswers(res, req, id);
         }
         else if (method === 'POST' && path === '/api/register') {
             await handleRegister(res, req);

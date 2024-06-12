@@ -96,24 +96,43 @@ const getQuestionById = async (res, request, id) => {
     }
 };
 
-const checkQuestionAnswers = async (res, id, userAnswers) => {
-    try {
-        const question = await Question.findOne({ id: parseInt(id) });
-        if (!question) {
-            handleResponse(res, 404, { error: "Question not found" });
-            return;
+const checkQuestionAnswers = async (res, req, id) => {
+    let body = '';
+
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
+
+    req.on('end', async () => {
+        //try-catch since the body might now be always a valid int
+        try {
+            const parsedBody = JSON.parse(body);
+            if (!Array.isArray(parsedBody.answers) || !parsedBody.answers.every(Number.isInteger)) {
+                throw new Error('Invalid input');
+            }
+            const { answers } = parsedBody;
+            try {
+                const question = await Question.findOne({ id: parseInt(id) });
+                if (!question) {
+                    handleResponse(res, 404, { error: "Question not found" });
+                    return;
+                }
+
+                const isCorrect = answers.every(answer => {
+                    const correctAnswer = question.answers.find(a => a.key === answer);
+                    return correctAnswer && correctAnswer.correct === 1;
+                });
+
+                handleResponse(res, 200, { isCorrect });
+            } catch (error) {
+                console.error(error);
+                handleResponse(res, 500, { error: "Error checking answers" });
+            }
+        } catch (error) {
+            console.error('Invalid input:', error);
+            handleResponse(res, 400, { error: 'Invalid input: answers must be an array of integers' });
         }
-
-        const isCorrect = userAnswers.every(answer => {
-            const correctAnswer = question.answers.find(a => a.key === answer);
-            return correctAnswer && correctAnswer.correct === 1;
-        });
-
-        handleResponse(res, 200, { isCorrect });
-    } catch (error) {
-        console.error(error);
-        handleResponse(res, 500, { error: "Error checking answers" });
-    }
+    });
 };
 
 module.exports = {
