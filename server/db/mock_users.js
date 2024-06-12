@@ -11,11 +11,18 @@ async function run() {
         for(let j = 0; j < count; j++){
             quizScores.push(Math.ceil(Math.random() * 26));
         }
+        let countAnswered = Math.floor(Math.random() * 500);
+        // generate a random array with numbers between 1 and 999
+        let questionsAnswered = [];
+        for(let j = 0; j < countAnswered; j++){
+            questionsAnswered.push(Math.ceil(Math.random() * 999));
+        }
+        questionsAnswered = [...new Set(questionsAnswered)];
         const user = new User({
             username: faker.internet.userName().toLowerCase(),
             email: faker.internet.email().toLowerCase(),
             hashedPassword: CryptoJS.SHA256(faker.internet.password()).toString(),
-            questionsAnswered: Math.floor(Math.random() * 999),
+            questionsAnswered: questionsAnswered,
             quizScoreCount: count,
             quizScoreTotal: quizScores.reduce((a, b) => a + b, 0),
             quizScores: quizScores
