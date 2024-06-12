@@ -49,9 +49,31 @@ const makeServer = async () => {
             await getImageBySection(res, req, section)
         } 
         
-        //GET /api/question/random
-        else if(method === 'GET' && path === '/api/question/random'){
-            await getRandomQuestion(res, req);
+        //POST /api/question/random with argument validation
+        else if (method === 'POST' && path === '/api/question/random') {
+            let body = '';
+        
+            req.on('data', chunk => {
+                body += chunk.toString();
+            });
+        
+            req.on('end', async () => {
+                try {
+                    const parsedBody = JSON.parse(body);
+                    const { answeredQuestions } = parsedBody;
+        
+                    // validate the input
+                    if (!Array.isArray(answeredQuestions) || !answeredQuestions.every(Number.isInteger)) {
+                        throw new Error('Invalid input: answeredQuestions must be an array of integers');
+                    }
+        
+                    await getRandomQuestion(res, req, answeredQuestions);
+                } catch (error) {
+                    console.error('Invalid input:', error);
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Invalid input: answeredQuestions must be an array of integers' }));
+                }
+            });
         }
 
         //GET /api/question/:id
