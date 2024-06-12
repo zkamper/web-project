@@ -9,6 +9,8 @@ const User = require('./models/user_model');
 
 const http = require('http');
 const url = require('url');
+const handleResponse = require("./utils/handleResponse");
+const Question = require("./models/question_model");
 
 const PORT = process.env.PORT || 8090;
 
@@ -49,29 +51,7 @@ const makeServer = async () => {
         
         //POST /api/question/random with argument validation
         else if (method === 'POST' && path === '/api/question/random') {
-            let body = '';
-        
-            req.on('data', chunk => {
-                body += chunk.toString();
-            });
-        
-            req.on('end', async () => {
-                try {
-                    const parsedBody = JSON.parse(body);
-                    const { answeredQuestions } = parsedBody;
-        
-                    // validate the input
-                    if (!Array.isArray(answeredQuestions) || !answeredQuestions.every(Number.isInteger)) {
-                        throw new Error('Invalid input: answeredQuestions must be an array of integers');
-                    }
-        
-                    await getRandomQuestion(res, req, answeredQuestions);
-                } catch (error) {
-                    console.error('Invalid input:', error);
-                    res.writeHead(400, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ error: 'Invalid input: answeredQuestions must be an array of integers' }));
-                }
-            });
+            await getRandomQuestion(res, req);
         }
 
         //GET /api/question/:id
