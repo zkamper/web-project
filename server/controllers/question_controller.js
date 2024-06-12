@@ -1,8 +1,9 @@
 const Question = require('../models/question_model');
 const handleResponse = require("../utils/handleResponse");
 
-const getRandomQuestion = async (res, request) => {
+const getRandomQuestion = async (res, request, answeredQuestions) => {
     try {
+        
         // get the maximum id value
         const maxIdDoc = await Question.findOne().sort({ id: -1 }).limit(1);
         if (!maxIdDoc) {
@@ -11,8 +12,19 @@ const getRandomQuestion = async (res, request) => {
         }
         const maxId = maxIdDoc.id;
 
-        // generate a random number between 1 and maxId, find that question
-        const randomId = Math.floor(Math.random() * maxId) + 1;
+        // create an array of possible question IDs and remove the answered questions
+        const allIds = Array.from({ length: maxId }, (_, i) => i + 1);
+
+        const unansweredIds = allIds.filter(id => !answeredQuestions.includes(id));
+
+        if (unansweredIds.length === 0) {
+            handleResponse(res, 404, { error: "No unanswered questions available" });
+            return;
+        }
+
+        // select a random ID from the unanswered IDs
+        const randomIndex = Math.floor(Math.random() * unansweredIds.length);
+        const randomId = unansweredIds[randomIndex];
 
         const question = await Question.findOne({ id: randomId });
         if (!question) {
