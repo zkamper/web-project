@@ -1,4 +1,5 @@
 .main-content {
+  display: none;
   position: relative;
   top: 19vh;
   z-index: 1;
@@ -11,7 +12,7 @@
 }
 
 .main-title {
-  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   font-size: 30px;
   color: #060606;
   letter-spacing: 1px;
@@ -19,35 +20,29 @@
 }
 
 .container {
-  margin-top: 3rem;
   position: relative;
   display: flex;
   justify-content: left;
   flex-direction: column;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
   border-radius: 15px;
   max-width: 720px;
-  width: -moz-fit-content;
   width: fit-content;
-  padding-left: 10vh;
-  padding-right: 10vh;
+  padding: 2rem 10vh;
   margin: 0 auto;
 }
 .container p {
-  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   font-size: 15px;
   color: #060606;
   letter-spacing: 1px;
   font-weight: 300;
-  text-align: left;
   margin-bottom: 8px;
   margin-top: 0;
   padding: 0;
   text-align: justify;
 }
 .container h2 {
-  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   font-size: 30px;
   color: #060606;
   letter-spacing: 1px;
@@ -65,14 +60,14 @@
   justify-content: flex-start;
 }
 .container__input label {
-  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   font-size: 15px;
   color: #060606;
   font-weight: 300;
   margin-left: 1rem;
 }
 .container__input input {
-  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   font-size: 15px;
   color: #060606;
   letter-spacing: 1px;
@@ -90,10 +85,8 @@
   font-weight: 300;
   cursor: pointer;
   transition: all 0.3s;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
-  width: 100%;
 }
 .submit-button:hover {
   background-color: #553fcf;
@@ -101,8 +94,10 @@
 }
 
 .container__submit {
-  width: -moz-fit-content;
-  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 1rem;
 }
 .container__submit button {
@@ -129,15 +124,19 @@
   border: 1px solid #432981;
   margin-bottom: 1rem;
   border-radius: 3px;
+  width: 100%;
 }
 .progress-bar span {
+  position: relative;
   background-color: #553fcf;
+  width: 0;
   display: block;
-  width: 100px;
-  font-family: "Roboto", Helvetica, "Helvetica Neue";
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   color: #f5f5f5;
   line-height: 20px;
-  position: absolute;
   text-align: end;
   padding-right: 5px;
-}/*# sourceMappingURL=user.css.map */
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=user.css.map */

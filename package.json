@@ -14,10 +14,15 @@
   },
   "private": true,
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
+    "faker": "^6.6.6",
     "jsdom": "^24.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.3"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
   }
 }

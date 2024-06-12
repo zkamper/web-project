@@ -20,10 +20,7 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    questionsAnswered: {
-        type: Number,
-        default: 0
-    },
+    questionsAnswered: [Number],
     quizScoreTotal: {
         type: Number,
         default: 0

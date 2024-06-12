@@ -2,7 +2,7 @@ const handleResponse = require('../utils/handleResponse');
 const User = require('../models/user_model');
 const jwt = require("jsonwebtoken");
 
-const handleRegister = async (res,req) => {
+const handleRegister = async (res, req) => {
     let body = '';
 
     req.on('data', chunk => {
@@ -10,19 +10,21 @@ const handleRegister = async (res,req) => {
     });
 
     req.on('end', async () => {
-        if(body === '') {
+        if (body === '') {
             handleResponse(res, 400, {error: 'Invalid input: body is empty'});
             return;
         }
         try {
             const parsedBody = JSON.parse(body);
-            const { username, email, password } = parsedBody;
-            let exists = await User.exists({ username });
+            let {username, email, password} = parsedBody;
+            username = username.toLowerCase();
+            email = email.toLowerCase();
+            let exists = await User.exists({username});
             if (exists) {
                 handleResponse(res, 400, {error: 'Username already exists'});
                 return;
             }
-            exists = await User.exists({ email });
+            exists = await User.exists({email});
             if (exists) {
                 handleResponse(res, 400, {error: 'Email already exists'});
                 return;
@@ -42,7 +44,61 @@ const handleRegister = async (res,req) => {
 }
 
 function generateToken(payload, secret, expiresIn) {
-    return jwt.sign(payload, secret, { expiresIn });
+    return jwt.sign(payload, secret, {expiresIn});
+}
+
+async function verifyToken(token) {
+    try {
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findOne({username: payload.username});
+        if (!user) {
+            return false;
+        }
+        return payload;
+    } catch (_) {
+        return false;
+    }
+}
+
+async function handleToken(res, req) {
+    const authorization = req.headers.authorization;
+    if (!authorization) {
+        handleResponse(res, 401, {error: 'Unauthorized'});
+        return;
+    }
+    const token = authorization.split(' ')[1];
+
+    const payload = await verifyToken(token);
+    if (!payload) {
+        handleResponse(res, 401, {error: 'Unauthorized'});
+        return;
+    }
+    return payload;
+}
+
+const handleUserProfile = async (res, req) => {
+    const payload = await handleToken(res, req);
+    if (!payload) {
+        return;
+    }
+    try {
+        const {username} = payload;
+        const user = await User.findOne({username});
+        if (!user) {
+            handleResponse(res, 404, {error: 'User not found'});
+            return;
+        }
+        handleResponse(res, 200, {
+            username: user.username,
+            questionsAnswered: user.questionsAnswered,
+            quizScoreTotal: user.quizScoreTotal,
+            quizScoreCount: user.quizScoreCount,
+            quizScores: user.quizScores
+        })
+    } catch (error) {
+        console.error('Invalid input:', error);
+        handleResponse(res, 500, {error: 'Error fetching user profile'});
+    }
 }
 
 const handleLogin = async (res, req) => {
@@ -53,14 +109,15 @@ const handleLogin = async (res, req) => {
     });
 
     req.on('end', async () => {
-        if(body === '') {
+        if (body === '') {
             handleResponse(res, 400, {error: 'Invalid input: body is empty'});
             return;
         }
         try {
             const parsedBody = JSON.parse(body);
-            const { email, password } = parsedBody;
-            let user = await User.findOne({ email });
+            let {email, password} = parsedBody;
+            email = email.toLowerCase();
+            let user = await User.findOne({email});
             if (!user) {
                 handleResponse(res, 400, {error: 'Invalid credentials'});
                 return;
@@ -84,7 +141,47 @@ const handleLogin = async (res, req) => {
     });
 }
 
+const handleChangePassword = async (res, req) => {
+    let body = '';
+    const payload = await handleToken(res, req);
+    if (!payload) {
+        return;
+    }
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
+
+    req.on('end', async () => {
+        if (body === '') {
+            handleResponse(res, 400, {error: 'Invalid input: body is empty'});
+            return;
+        }
+        try {
+            const parsedBody = JSON.parse(body);
+            const {oldPassword, newPassword} = parsedBody;
+            if (oldPassword === newPassword) {
+                handleResponse(res, 400, {error: 'New password must be different from the old password'});
+                return;
+            }
+            const {username} = payload;
+            const user = await User.findOne({username});
+            if (oldPassword !== user.hashedPassword) {
+                handleResponse(res, 400, {error: 'Invalid credentials'});
+                return;
+            }
+            user.hashedPassword = newPassword;
+            await user.save();
+            handleResponse(res, 200, {message: 'Password changed'});
+        } catch (error) {
+            console.error('Invalid input:', error);
+            handleResponse(res, 400, {error: 'Invalid input: body must be a valid JSON'});
+        }
+    });
+}
+
 module.exports = {
     handleRegister,
-    handleLogin
+    handleLogin,
+    handleChangePassword,
+    handleUserProfile
 }

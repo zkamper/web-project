@@ -6,67 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/user.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/navbarScript.js" defer></script>
+    <script src="scripts/profileScript.js" defer></script>
     <script src="https://kit.fontawesome.com/2451e89b81.js" crossorigin="anonymous"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
     <title>Mediu de învățare</title>
 </head>
 
 <body class="user-page">
-    <nav class="navbar">
-        <div class="brand-title"> <a href="/">Traffic instructor</a></div>
-        <div class="toggle-button">
-            <i class="fas fa-bars"></i>
+<nav class="navbar">
+    <div class="brand-title"><a href="/">Traffic instructor</a></div>
+    <div class="toggle-button">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="/mediu-invatare">Mediu de învățare</a></li>
+            <li><a href="/indicatoare">Indicatoare Rutiere</a></li>
+            <li><a href="/legislatie">Legislație</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <div class="main-content">
+        <div class="main-title">
+            Salut, <span id="user-name"></span>!
         </div>
-        <div class="navbar-links">
-            <ul>
-                <li><a href="/mediu-invatare">Mediu de învățare</a></li>
-                <li><a href="/indicatoare">Indicatoare Rutiere</a></li>
-                <li><a href="/legislatie">Legislație</a></li>
-                <li><a href="/login">Login</a></li>
-            </ul>
-        </div>
-    </nav>
-    <main>
-        <div class="main-content">
-            <div class="main-title">
-                Salut, User!
-            </div>
-            <div class="container">
-                <form action="#" class="container__form" id="reset-pass-form">
-                    <p>Schimbă parola contului</p>
-                    <div class="container__input input-pass-old">
-                        <input type="password" id="password-old" name="password" required>
-                        <label for="password">Parola veche</label>
-                    </div>
-                    <div class="container__input input-pass-new">
-                        <input type="password" id="password-new" name="password" required>
-                        <label for="password">Parola nouă</label>
-                    </div>
-                    <div class="container__submit">
-                        <button class="submit-button" type="submit">Reseteaza parola</button>
-                    </div>
-                </form>
-                <div class="container__progress">
-                    <p>Progresul la mediul de învățare</p>
-                    <div class="progress-bar" id="progress-bar">
-                        <span progress="50">Progres</span>
-                    </div>
+        <div class="container">
+            <form class="container__form" id="reset-pass-form">
+                <p>Schimbă parola contului</p>
+                <div class="container__input input-pass-old">
+                    <input type="password" id="password-old" name="password" required>
+                    <label for="password-old">Parola veche</label>
                 </div>
-                <button class="submit-button" type="submit" onclick="">Resetează progres</button>
-                <h2> Traffic Instructor 101</h2>
-                <p>Îți dorești să dai examenul pentru permisul auto? Stai fără grijăm, cu noi o să fie floare la ureche!
-                </p>
-                <p>Pentru început, vizitează secțiunea <a href="prezentare-legislatie.html">legistlație</a> unde poți
-                    învăța regulile și semnele de circulație</p>
-                <p>Odată pregătit, te poți pregăti pentru examenul în sine accesând <a href="mediu-invatare.html">mediul
-                        de învățare</a>, unde poți trece prin toate întrebările care pot pica la proba teoretică, sau să
-                    rezolvi un chestionar generat automat.</p>
+                <div class="container__input input-pass-new">
+                    <input type="password" id="password-new" name="password" required>
+                    <label for="password-new">Parola nouă</label>
+                </div>
+                <div class="container__status">
+                    <p id="response-status"></p>
+                </div>
+                <div class="container__submit">
+                    <button class="submit-button" type="submit">Reseteaza parola</button>
+                    <button class="submit-button" onclick="handleLogout()">Logout</button>
+                </div>
+            </form>
+            <div class="container__progress">
+                <p>Progresul la mediul de învățare</p>
+                <div class="progress-bar">
+                    <span id="progress-bar">Progres</span>
+                </div>
             </div>
+            <button class="submit-button" type="submit" onclick="">Resetează progres</button>
+            <h2> Traffic Instructor 101</h2>
+            <p>Îți dorești să dai examenul pentru permisul auto? Stai fără grijăm, cu noi o să fie floare la ureche!
+            </p>
+            <p>Pentru început, vizitează secțiunea <a href="/legislatie">legistlație</a> unde poți
+                învăța regulile și semnele de circulație</p>
+            <p>Odată pregătit, te poți pregăti pentru examenul în sine accesând <a href="/mediu-invatare">mediul
+                de învățare</a>, unde poți trece prin toate întrebările care pot pica la proba teoretică, sau să
+                rezolvi un chestionar generat automat.</p>
         </div>
-    </main>
+    </div>
+</main>
 </body>
 
 </html>

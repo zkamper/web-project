@@ -1,18 +1,16 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const {getLawsBySection} = require('./controllers/law_controller');
+const {getImageBySection} = require('./controllers/image_controller');
+const {getRandomQuestion, getQuestionById, checkQuestionAnswers} = require('./controllers/question_controller');
+const {handleLogin, handleRegister, handleChangePassword, handleUserProfile} = require("./controllers/user_controller");
 
-const getLawsBySection = require('./controllers/law_controller').getLawsBySection;
-const getImageBySection = require('./controllers/image_controller').getImageBySection;
-const getRandomQuestion = require('./controllers/question_controller').getRandomQuestion;
-const getQuestionById = require('./controllers/question_controller').getQuestionById;
-const checkQuestionAnswers = require('./controllers/question_controller').checkQuestionAnswers;
-const handleRegister = require('./controllers/user_controller').handleRegister;
 const User = require('./models/user_model');
 
 const http = require('http');
 const url = require('url');
-const {handleLogin} = require("./controllers/user_controller");
-const PORT = process.env.PORT || 3456;
+
+const PORT = process.env.PORT || 8090;
 
 main().then(() => {
     console.log('Server is running');
@@ -90,6 +88,12 @@ const makeServer = async () => {
         }
         else if (method === 'POST' && path === '/api/login') {
             await handleLogin(res, req);
+        }
+        else if (method === 'PATCH' && path === '/api/user') {
+            await handleChangePassword(res, req);
+        }
+        else if (method === 'GET' && path === '/api/user/profile') {
+            await handleUserProfile(res,req);
         }
         //all the other requests
         else {
