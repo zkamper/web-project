@@ -1,4 +1,3 @@
-//ii)testat functia per total
 async function renderImages() {
     try {
         // Get the container element where the images will be appended

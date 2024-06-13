@@ -141,6 +141,53 @@ const handleLogin = async (res, req) => {
     });
 }
 
+const getTopUsers = async (res, req) => {
+    try {
+        const topUsers = await User.aggregate([
+            {
+                $match: {
+                    quizScoreCount: { $gt: 0 } // Filter out users with zero quizScoreCount
+                }
+            },
+            {
+                $addFields: {
+                    average: { $divide: ["$quizScoreTotal", "$quizScoreCount"] },
+                    p1: { $divide: [{ $divide: ["$quizScoreTotal", "$quizScoreCount"] }, 26] },
+                    p2: { $divide: [{ $size: "$questionsAnswered" }, 1000] }
+                }
+            },
+            {
+                $addFields: {
+                    score: { 
+                        $add: [
+                            { $multiply: ["$p1", 99] },
+                            { $multiply: ["$p2", 1] }
+                        ]
+                    }
+                }
+            },
+            {
+                $sort: { score: -1 } // Sort by score in descending order
+            },
+            {
+                $limit: 5 // Limit to top 5 users
+            },
+            {
+                $project: {
+                    _id: 0, // Exclude _id field from the output
+                    username: 1,
+                    score: { $round: ["$score", 2] } // Round the score to 2 decimal places
+                }
+            }
+        ]);
+
+        handleResponse(res, 200, topUsers);
+    } catch (error) {
+        console.error("Error fetching top users:", error);
+        handleResponse(res, 500, { error: "Error fetching top users" });
+    }
+};
+
 const handleChangePassword = async (res, req) => {
     let body = '';
     const payload = await handleToken(res, req);
@@ -183,5 +230,6 @@ module.exports = {
     handleRegister,
     handleLogin,
     handleChangePassword,
+    getTopUsers,
     handleUserProfile
 }

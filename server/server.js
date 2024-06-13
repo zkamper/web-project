@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {getLawsBySection} = require('./controllers/law_controller');
 const {getImageBySection} = require('./controllers/image_controller');
 const {getRandomQuestion, getQuestionById, checkQuestionAnswers} = require('./controllers/question_controller');
-const {handleLogin, handleRegister, handleChangePassword, handleUserProfile} = require("./controllers/user_controller");
+const {handleLogin, handleRegister, handleChangePassword, getTopUsers, handleUserProfile} = require("./controllers/user_controller");
 
 const User = require('./models/user_model');
 
@@ -77,6 +77,12 @@ const makeServer = async () => {
         else if (method === 'GET' && path === '/api/user/profile') {
             await handleUserProfile(res,req);
         }
+
+        //GET /api/users/top
+        else if (method ==='GET' && path === '/api/users/top'){
+            await getTopUsers(res, req);
+        }
+
         //all the other requests
         else {
             res.writeHead(404, { 'Content-Type': 'application/json' });
