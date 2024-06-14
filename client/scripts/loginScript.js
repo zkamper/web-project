@@ -38,7 +38,9 @@ loginForm.addEventListener('submit', async event => {
             alert(data.error);
             return;
         }
+        localStorage.clear();
         localStorage.setItem('token', data.token);
+        localStorage.removeItem('progress');
         window.location.reload();
     } catch (error) {
         console.error('Error:', error);

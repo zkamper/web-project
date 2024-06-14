@@ -1,6 +1,6 @@
 const handleResponse = require('../utils/handleResponse');
 const User = require('../models/user_model');
-const jwt = require("jsonwebtoken");
+const {handleToken, generateToken} = require("../utils/tokenUtils");
 
 const handleRegister = async (res, req) => {
     let body = '';
@@ -43,38 +43,6 @@ const handleRegister = async (res, req) => {
     });
 }
 
-function generateToken(payload, secret, expiresIn) {
-    return jwt.sign(payload, secret, {expiresIn});
-}
-
-async function verifyToken(token) {
-    try {
-        const payload = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findOne({username: payload.username});
-        if (!user) {
-            return false;
-        }
-        return payload;
-    } catch (_) {
-        return false;
-    }
-}
-
-async function handleToken(res, req) {
-    const authorization = req.headers.authorization;
-    if (!authorization) {
-        handleResponse(res, 401, {error: 'Unauthorized'});
-        return;
-    }
-    const token = authorization.split(' ')[1];
-
-    const payload = await verifyToken(token);
-    if (!payload) {
-        handleResponse(res, 401, {error: 'Unauthorized'});
-        return;
-    }
-    return payload;
-}
 
 const handleUserProfile = async (res, req) => {
     const payload = await handleToken(res, req);

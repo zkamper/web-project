@@ -47,8 +47,7 @@ const makeServer = async () => {
         else if (method === 'GET' && path.startsWith('/api/indicatoare')){
             const section = path.split('/')[3];
             await getImageBySection(res, req, section)
-        } 
-        
+        }
         //POST /api/question/random with argument validation
         else if (method === 'POST' && path === '/api/question/random') {
             await getRandomQuestion(res, req);

@@ -2,7 +2,7 @@ const loginForm = document.getElementById("reset-pass-form");
 const status = document.getElementById('response-status');
 
 const handleLogout = async () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
     window.location.href = '/login';
 }
 
@@ -73,6 +73,7 @@ async function getUserData() {
 
 getUserData().then((data) => {
     let progress = data.questionsAnswered.length / 1000 * 100;
+    localStorage.setItem('progress', JSON.stringify(data.questionsAnswered.length));
     document.getElementById('user-name').textContent = data.username;
     document.getElementById('progress-bar').style.width = progress + '%';
     document.getElementsByClassName("main-content")[0].style.display = "block";

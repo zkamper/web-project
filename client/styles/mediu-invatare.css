@@ -29,8 +29,8 @@
   letter-spacing: 1px;
   font-weight: 300;
   display: flex;
+  justify-content: space-between;
   width: fit-content;
-  max-width: 500px;
 }
 .main-container__answer p {
   margin: 0;
@@ -38,6 +38,7 @@
   font-size: 20px;
   align-self: center;
   text-align: left;
+  max-width: 400px;
 }
 .main-container__answer .answer-button {
   margin-top: 1rem;
@@ -57,6 +58,12 @@
 .main-container__answer .answer-button:hover {
   background-color: #553fcf;
   color: #432981;
+}
+.main-container__answer .correct-answer {
+  box-shadow: 0 0 15px green;
+}
+.main-container__answer .wrong-answer {
+  box-shadow: 0 0 15px red;
 }
 
 .main-container__answer--selected .answer-button {
@@ -136,6 +143,7 @@
   position: absolute;
   text-align: end;
   padding-right: 5px;
+  overflow: hidden;
 }
 
 .main-container__answers-and-question {
