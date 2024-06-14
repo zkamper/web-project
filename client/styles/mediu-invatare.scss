@@ -3,6 +3,7 @@ $theGoodColor: #432981;
 $hoverColor: #553fcf;
 
 .main-content {
+    display: none;
     position: relative;
     top: 19vh;
     z-index: 1;
@@ -10,7 +11,7 @@ $hoverColor: #553fcf;
 }
 
 .main-title {
-    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-family: "Roboto", Helvetica, 'Helvetica Neue', serif;
     font-size: 49px;
     color: #060606;
     letter-spacing: 1px;
@@ -26,18 +27,20 @@ $hoverColor: #553fcf;
 }
 
 .main-container__answer {
-    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-family: "Roboto", Helvetica, 'Helvetica Neue', serif;
     font-size: 30px;
     color: #060606;
     letter-spacing: 1px;
     font-weight: 300;
     display: flex;
-
+    width: fit-content;
+    max-width: 500px;
     p {
-        margin-left: 1rem;
-        font-size: 16px;
+        margin: 0;
+        padding-left: 1rem;
+        font-size: 20px;
         align-self: center;
-        min-width: 9rem;
+        text-align: left;
     }
 
     .answer-button {
@@ -58,8 +61,8 @@ $hoverColor: #553fcf;
         }
 
         border-radius: 50%;
-        aspect-ratio: 1;
         width: 60px;
+        height: 60px;
     }
 }
 
@@ -76,7 +79,7 @@ $hoverColor: #553fcf;
 }
 
 .main-container__question {
-    font-family: "Roboto", Helvetica, 'Helvetica Neue';
+    font-family: "Roboto", Helvetica, 'Helvetica Neue', serif;
     font-size: 30px;
     color: #060606;
     letter-spacing: 1px;
@@ -141,7 +144,7 @@ $hoverColor: #553fcf;
         background-color: $hoverColor;
         display: block;
         width: 100px;
-        font-family: "Roboto", Helvetica, 'Helvetica Neue';
+        font-family: "Roboto", Helvetica, 'Helvetica Neue', serif;
         color: #f5f5f5;
         line-height: 30px;
         position: absolute;
@@ -151,22 +154,19 @@ $hoverColor: #553fcf;
 }
 
 .main-container__answers-and-question {
+    width: fit-content;
+    max-width: 75%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
-    width: min-content;
-    padding-left: 10vh;
-    padding-right: 10vh;
 }
 
 .main-container__question {
-    font-family: "Roboto", Helvetica, 'Helvetica Neue';
-    min-width: 40vh;
+    font-family: "Roboto", Helvetica, 'Helvetica Neue', serif;
     margin-left: 1rem;
 
     p {
@@ -174,6 +174,7 @@ $hoverColor: #553fcf;
         margin-bottom: 0;
         font-size: 20px;
         text-align: justify;
+        max-width: 400px;
     }
 }
 
@@ -201,9 +202,9 @@ $hoverColor: #553fcf;
 
     .main-container__question {
         font-size: 20px;
-
         p {
             font-size: 15px;
+            max-width: fit-content;
         }
 
         flex-direction: row;
@@ -211,8 +212,8 @@ $hoverColor: #553fcf;
 
     .main-container__image {
         img {
-            width: 30vh;
-            height: 30vh;
+            width: 200px;
+            height: 200px;
         }
     }
     .progress-bar {

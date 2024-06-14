@@ -82,11 +82,9 @@ const makeServer = async () => {
         else if (method ==='GET' && path === '/api/users/top'){
             await getTopUsers(res, req);
         }
-
         //all the other requests
         else {
-            res.writeHead(404, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Not found' }));
+            handleResponse(res, 404, {error: 'Route not found'});
         }
     })
     server.listen(PORT, (error) => {

@@ -146,7 +146,7 @@ const getTopUsers = async (res, req) => {
         const topUsers = await User.aggregate([
             {
                 $match: {
-                    quizScoreCount: { $gt: 0 } // Filter out users with zero quizScoreCount
+                    quizScoreCount: { $gt: 0 }
                 }
             },
             {
@@ -167,16 +167,16 @@ const getTopUsers = async (res, req) => {
                 }
             },
             {
-                $sort: { score: -1 } // Sort by score in descending order
+                $sort: { score: -1 }
             },
             {
-                $limit: 5 // Limit to top 5 users
+                $limit: 5
             },
             {
                 $project: {
-                    _id: 0, // Exclude _id field from the output
+                    _id: 0,
                     username: 1,
-                    score: { $round: ["$score", 2] } // Round the score to 2 decimal places
+                    score: { $round: ["$score", 2] }
                 }
             }
         ]);
