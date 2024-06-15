@@ -14,7 +14,7 @@ async function renderTopUsers() {
 
         usersAndScores.forEach((user, index) => {
             const li = document.createElement('li');
-            li.textContent = `${index + 1}. ${user.username}: ${user.score.toFixed(2)} POINTS`; // Format score to 2 decimal places
+            li.textContent = `${user.username}: ${user.score.toFixed(2)} POINTS`; // Format score to 2 decimal places
             topUsersList.appendChild(li);
         });
     } catch (error) {
@@ -22,7 +22,6 @@ async function renderTopUsers() {
     }
 }
 
-// Call the function to render top users
 renderTopUsers().then(() => {
     console.log("Users rendered!");
 });

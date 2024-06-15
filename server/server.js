@@ -4,6 +4,7 @@ const {getLawsBySection} = require('./controllers/law_controller');
 const {getImageBySection} = require('./controllers/image_controller');
 const {getRandomQuestion, getQuestionById, checkQuestionAnswers} = require('./controllers/question_controller');
 const {handleLogin, handleRegister, handleChangePassword, getTopUsers, handleUserProfile} = require("./controllers/user_controller");
+const loadRss = require('./controllers/rss_controller');
 
 const User = require('./models/user_model');
 
@@ -81,6 +82,12 @@ const makeServer = async () => {
         else if (method ==='GET' && path === '/api/users/top'){
             await getTopUsers(res, req);
         }
+
+        //GET /rss
+        else if (method ==='GET' && path ==='/rss'){
+            await loadRss(res,req);
+        }
+
         //all the other requests
         else {
             handleResponse(res, 404, {error: 'Route not found'});

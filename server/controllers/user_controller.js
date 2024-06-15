@@ -43,7 +43,6 @@ const handleRegister = async (res, req) => {
     });
 }
 
-
 const handleUserProfile = async (res, req) => {
     const payload = await handleToken(res, req);
     if (!payload) {
