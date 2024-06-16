@@ -60,6 +60,7 @@ async function renderArticle() {
         console.error('Error:', error);
     }
 }
+
 renderArticle().then(() => {
     console.log("Article rendered");
 });

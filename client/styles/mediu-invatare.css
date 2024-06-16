@@ -30,6 +30,7 @@
   font-weight: 300;
   display: flex;
   justify-content: space-between;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .main-container__answer p {
@@ -147,6 +148,7 @@
 }
 
 .main-container__answers-and-question {
+  width: -moz-fit-content;
   width: fit-content;
   max-width: 75%;
   display: flex;
@@ -193,6 +195,7 @@
   }
   .main-container__question p {
     font-size: 15px;
+    max-width: -moz-fit-content;
     max-width: fit-content;
   }
   .main-container__image img {
@@ -211,6 +214,4 @@
   .submit-button {
     margin-bottom: 1rem;
   }
-}
-
-/*# sourceMappingURL=mediu-invatare.css.map */
+}/*# sourceMappingURL=mediu-invatare.css.map */

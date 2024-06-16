@@ -19,6 +19,7 @@
     "faker": "^5.5.3",
     "jsdom": "^24.0.0",
     "jsonwebtoken": "^9.0.2",
+    "moment-timezone": "^0.5.45",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.3"
   },

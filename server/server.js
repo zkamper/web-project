@@ -83,8 +83,8 @@ const makeServer = async () => {
             await getTopUsers(res, req);
         }
 
-        //GET /rss
-        else if (method ==='GET' && path ==='/rss'){
+        //GET /rss.xml
+        else if (method ==='GET' && path ==='/rss.xml'){
             await loadRss(res,req);
         }
 
