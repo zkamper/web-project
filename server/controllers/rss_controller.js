@@ -3,6 +3,7 @@ const handleResponse = require("../utils/handleResponse");
 const moment = require('moment-timezone');
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 const User = require('../models/user_model');
 
 const getTopUsers = async () => {
@@ -55,6 +56,19 @@ const removeNewlines = (str) => {
     return str.replace(/[\r\n]+/g, '');
 };
 
+const cleanXmlString = (xmlString) => {
+    // remove backslashes before quotes and newlines
+    let cleanedString = xmlString.replace(/\\"/g, '"').replace(/\\'/g, "'").replace(/\\n/g, '').replace(/\\t/g, '');
+
+    // remove any additional backslashes
+    cleanedString = cleanedString.replace(/\\/g, '');
+
+    // trim each line and join them back
+    cleanedString = cleanedString.split('\n').map(line => line.trim()).join('\n');
+
+    return cleanedString;
+};
+
 const loadRss = async (res, req) => {
     try {
         const topUsers = await getTopUsers();
@@ -66,21 +80,25 @@ const loadRss = async (res, req) => {
 
         //fill the template
         let items = topUsers.map((user) => {
+            // generate a unique GUID for each item
+            const guid = `http://localhost/mediu-invatare/${uuidv4()}`;
+
             return `<item>
-            <title><![CDATA[${user.username}]]></title>
-            <link>http://localhost/mediu-invatare</link>
-            <guid>http://localhost/mediu-invatare</guid>
-            <description><![CDATA[Score: ${user.score.toFixed(2)}]]></description>
+                <title><![CDATA[${user.username}]]></title>
+                <link>http://localhost/mediu-invatare</link>
+                <guid>${guid}</guid>
+                <description><![CDATA[Score: ${user.score.toFixed(2)}]]></description>
             </item>`;
         }).join('');
 
-        // Replace placeholders in the template
+        // replace placeholders in the template
         rssTemplate = rssTemplate
             .replace('{{lastBuildDate}}', lastBuildDate)
             .replace('{{items}}', items);
 
+        rssTemplate = cleanXmlString(rssTemplate);
         rssTemplate = removeNewlines(rssTemplate);
-
+        
         // send the RSS feed 
         handleRssResponse(res, 200, rssTemplate);
 

@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>Top Users</title>
-    <link>http://localhost/mediu-invatare</link>
-    <description>List of top users based on their scores</description>
-    <lastBuildDate>{{lastBuildDate}}</lastBuildDate>
-    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-    <generator>Custom RSS Generator</generator>
-    <language>en</language>
-    {{items}}
-  </channel>
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+    <channel>
+        <title>Top Users</title>
+        <link>http://localhost/mediu-invatare</link>
+        <description>List of top users based on their scores</description>
+        <lastBuildDate>{{lastBuildDate}}</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Custom RSS Generator</generator>
+        <language>en</language>
+        <atom:link href="http://localhost/mediu-invatare/rss.xml" rel="self" type="application/rss+xml" />
+        {{items}}
+    </channel>
+
 </rss>
