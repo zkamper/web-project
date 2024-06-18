@@ -4,49 +4,11 @@ const moment = require('moment-timezone');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const User = require('../models/user_model');
+const {topUsers} = require("../utils/getTopUsers");
 
 const getTopUsers = async () => {
     try {
-        const topUsers = await User.aggregate([
-            {
-                $match: {
-                    quizScoreCount: { $gt: 0 }
-                }
-            },
-            {
-                $addFields: {
-                    average: { $divide: ["$quizScoreTotal", "$quizScoreCount"] },
-                    p1: { $divide: [{ $divide: ["$quizScoreTotal", "$quizScoreCount"] }, 26] },
-                    p2: { $divide: [{ $size: "$questionsAnswered" }, 1000] }
-                }
-            },
-            {
-                $addFields: {
-                    score: { 
-                        $add: [
-                            { $multiply: ["$p1", 99] },
-                            { $multiply: ["$p2", 1] }
-                        ]
-                    }
-                }
-            },
-            {
-                $sort: { score: -1 }
-            },
-            {
-                $limit: 5
-            },
-            {
-                $project: {
-                    _id: 0,
-                    username: 1,
-                    score: { $round: ["$score", 2] }
-                }
-            }
-        ]);
-
-        return topUsers; 
+        return await topUsers();
     } catch (error) {
         console.error("Error fetching top users:" + error);
     }
@@ -57,15 +19,9 @@ const removeNewlines = (str) => {
 };
 
 const cleanXmlString = (xmlString) => {
-    // remove backslashes before quotes and newlines
     let cleanedString = xmlString.replace(/\\"/g, '"').replace(/\\'/g, "'").replace(/\\n/g, '').replace(/\\t/g, '');
-
-    // remove any additional backslashes
     cleanedString = cleanedString.replace(/\\/g, '');
-
-    // trim each line and join them back
     cleanedString = cleanedString.split('\n').map(line => line.trim()).join('\n');
-
     return cleanedString;
 };
 

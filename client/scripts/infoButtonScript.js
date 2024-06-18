@@ -1,8 +1,9 @@
-document.getElementById('info-button').addEventListener('click', function() {
-    var tooltip = document.getElementById('tooltip');
-    tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
-    tooltip.querySelector('.tooltip-text').style.fontSize = '14px';
+const infoButton = document.getElementById('info-button');
+const infoTooltip = document.getElementById('info-tooltip');
+infoButton.addEventListener('mouseover', () => {
+    infoTooltip.style.display = 'block';
+})
 
-    var scoreText = 'score = averageOfTheAnsweredQuestions * 99 + questionsAnswered/totalQuestions';
-    tooltip.querySelector('.tooltip-text').innerText = scoreText;
-});
+infoButton.addEventListener('mouseout', () => {
+    infoTooltip.style.display = 'none';
+})

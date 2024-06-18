@@ -77,6 +77,19 @@ $hoverColor: #553fcf;
     ol {
         padding: 0;
     }
+    .top-users {
+        button {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+        }
+        #info-button {
+            cursor: auto;
+        }
+        #info-tooltip {
+            font-size: 1rem;
+        }
+    }
 
     .sections__search-bar {
         margin-top: 0.5rem;

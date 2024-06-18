@@ -1,5 +1,5 @@
 const handleRssResponse = (res, statusCode, rssFeed) => {
-    res.writeHead(statusCode, { 'Content-Type': 'application/rss+xml' });
+    res.writeHead(statusCode, { 'Content-Type': 'application/xml' });
     //res.end(JSON.stringify(rssFeed));
     res.end(rssFeed);
 };

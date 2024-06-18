@@ -1,6 +1,7 @@
 const handleResponse = require('../utils/handleResponse');
 const User = require('../models/user_model');
 const {handleToken, generateToken} = require("../utils/tokenUtils");
+const {topUsers} = require("../utils/getTopUsers");
 
 const handleRegister = async (res, req) => {
     let body = '';
@@ -110,45 +111,8 @@ const handleLogin = async (res, req) => {
 
 const getTopUsers = async (res, req) => {
     try {
-        const topUsers = await User.aggregate([
-            {
-                $match: {
-                    quizScoreCount: { $gt: 0 }
-                }
-            },
-            {
-                $addFields: {
-                    average: { $divide: ["$quizScoreTotal", "$quizScoreCount"] },
-                    p1: { $divide: [{ $divide: ["$quizScoreTotal", "$quizScoreCount"] }, 26] },
-                    p2: { $divide: [{ $size: "$questionsAnswered" }, 1000] }
-                }
-            },
-            {
-                $addFields: {
-                    score: { 
-                        $add: [
-                            { $multiply: ["$p1", 99] },
-                            { $multiply: ["$p2", 1] }
-                        ]
-                    }
-                }
-            },
-            {
-                $sort: { score: -1 }
-            },
-            {
-                $limit: 5
-            },
-            {
-                $project: {
-                    _id: 0,
-                    username: 1,
-                    score: { $round: ["$score", 2] }
-                }
-            }
-        ]);
-
-        handleResponse(res, 200, topUsers);
+        const top = await topUsers();
+        handleResponse(res, 200, top);
     } catch (error) {
         console.error("Error fetching top users:", error);
         handleResponse(res, 500, { error: "Error fetching top users" });

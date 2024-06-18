@@ -56,13 +56,16 @@
                 <div class="top-users">
                     <h2>Cei mai buni utilizatori: 
                         <button id="rss-button">
-                            <img src="images/rss.png" height="30px" alt="Rss Icon">
+                            <img src="images/rss.png" height="32" alt="Rss Icon">
                         </button>
                     </h2>
                     
-                    <button id="info-button">
-                        <img src="images/info-icon.png" height="20px" alt="Info Icon">
-                    </button>
+                    <div id="info-button">
+                        <img src="images/info-icon.png" height="32" alt="Info Icon">
+                        <div id="info-tooltip" style="display: none">
+                            score = averageOfTheAnsweredQuestions * 99 + questionsAnswered/totalQuestions
+                        </div>
+                    </div>
                     
                     <div class="tooltip" id="tooltip">
                         <p class="tooltip-text"></p>

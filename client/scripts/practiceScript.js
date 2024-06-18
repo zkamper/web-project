@@ -82,14 +82,14 @@ const fetchQuestion = async () => {
                 console.log(result)
                 if (result.isCorrect) {
                     let progress = parseInt(localStorage.getItem('progress'));
-                    if(isNaN(progress)) {
+                    if (isNaN(progress)) {
                         progress = 0;
                     }
                     progress++;
                     localStorage.setItem('progress', progress.toString());
-                    if(!localStorage.getItem('token')) {
+                    if (!localStorage.getItem('token')) {
                         let answered = JSON.parse(localStorage.getItem('answeredQuestions'))
-                        if(answered === null) {
+                        if (answered === null) {
                             answered = [];
                         }
                         answered.push(question.id);
@@ -98,12 +98,10 @@ const fetchQuestion = async () => {
                     localStorage.removeItem('lastQuestion');
                 }
                 submitButton.style.display = 'none';
+                let className = result.isCorrect ? 'correct-answer' : 'wrong-answer';
                 for (const button of buttons) {
-                    if (result.answers.includes(parseInt(button.id)) && myAnswers.includes(parseInt(button.id))) {
-                        button.classList.toggle('correct-answer')
-                    }
-                    else if (result.answers.includes(parseInt(button.id))) {
-                        button.classList.toggle('wrong-answer')
+                    if(result.answers.includes(parseInt(button.id))) {
+                        button.classList.toggle(className);
                     }
                 }
             } catch (err) {
