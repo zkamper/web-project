@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {getLawsBySection} = require('./controllers/law_controller');
 const {getImageBySection} = require('./controllers/image_controller');
 const {getRandomQuestion, getQuestionById, checkQuestionAnswers} = require('./controllers/question_controller');
-const {handleLogin, handleRegister, handleChangePassword, getTopUsers, handleUserProfile} = require("./controllers/user_controller");
+const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile} = require("./controllers/user_controller");
 const loadRss = require('./controllers/rss_controller');
 
 const User = require('./models/user_model');
@@ -84,8 +84,12 @@ const makeServer = async () => {
         }
 
         //GET /rss.xml
-        else if (method ==='GET' && path ==='/rss.xml'){
-            await loadRss(res,req);
+        else if (method ==='GET' && path === '/rss.xml'){
+            await loadRss(res, req);
+        }
+
+        else if (method ==='DELETE' && path === '/api/user/profile'){
+            await deleteQuizInfo(res, req); 
         }
 
         //all the other requests

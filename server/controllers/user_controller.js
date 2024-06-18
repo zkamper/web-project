@@ -44,6 +44,37 @@ const handleRegister = async (res, req) => {
     });
 }
 
+const deleteQuizInfo = async (res, req) => {
+    const payload = await handleToken(res, req);
+    if (!payload) {
+        return;
+    }
+
+    try {
+        const user = await User.findOneAndUpdate(
+            { username: payload.username },
+            {
+                questionsAnswered: [],
+                quizScoreTotal: 0,
+                quizScoreCount: 0,
+                quizScores: []
+            },
+            { new: true }
+        );
+
+        if (!user) {
+            handleResponse(res, 404, { error: 'User not found' });
+            return;
+        }
+
+        // success
+        handleResponse(res, 200, { message: 'User quiz profile reset successfully' });
+    } catch (err) {
+        console.error('Error:', err);
+        handleResponse(res, 500, { error: 'Internal server error' });
+    }
+}
+
 const handleUserProfile = async (res, req) => {
     const payload = await handleToken(res, req);
     if (!payload) {
@@ -162,5 +193,6 @@ module.exports = {
     handleLogin,
     handleChangePassword,
     getTopUsers,
+    deleteQuizInfo,
     handleUserProfile
 }

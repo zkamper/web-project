@@ -1,5 +1,50 @@
 const loginForm = document.getElementById("reset-pass-form");
 const status = document.getElementById('response-status');
+const resetProgressButton = document.getElementById('reset-button');
+
+document.addEventListener('DOMContentLoaded', function() {
+    resetProgressButton.addEventListener('click', async function(event) {
+        const userConfirmed = confirm("Esti sigur că vrei să resetezi progresul?");
+        if (!userConfirmed) {
+            return;
+        }
+
+        try {
+            const jwtToken = localStorage.getItem('token');
+            if (!jwtToken) {
+                throw new Error('JWT token is missing');
+            }
+
+            const response = await fetch('/api/user/profile', {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + jwtToken
+                }
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    // unauthorized (401) response
+                    alert(data.error || 'Unauthorized'); // error message from backend
+                    localStorage.removeItem('token'); // remove invalid token from localStorage
+                    window.location.href = '/login'; // redirect to login page
+                    throw new Error('Unauthorized'); // 
+                } else {
+                    throw new Error(data.error || 'Failed to delete profile');
+                }
+            }
+
+            alert('Profile reset successfully');
+            window.location.reload(); // reload the page
+
+        } catch (error) {
+            console.error('Error:', error.message);
+            alert('Failed to delete profile: ' + error.message);
+        }
+    });
+});
 
 const handleLogout = async () => {
     localStorage.clear();
