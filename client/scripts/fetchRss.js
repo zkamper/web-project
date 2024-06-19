@@ -5,8 +5,7 @@ document.getElementById('rss-button').addEventListener('click', function() {
 
 async function fetchAndDisplayRssFeed() {
     try {
-        let host = window.location.host;
-        let apiPath = 'http://' + host + '/rss.xml';
+        let apiPath = '/rss.xml';
         
         // fetch the RSS XML
         let response = await fetch(apiPath);

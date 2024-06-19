@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 .progress-chestionar p {
   font-family: "Roboto", sans-serif;
@@ -15,4 +15,15 @@
   color: gray;
   padding: 3px;
   margin: 0;
-}/*# sourceMappingURL=quiz.css.map */
+}
+
+.progress-chestionar:nth-child(3) {
+  gap: 20px;
+  margin-top: 0;
+}
+.progress-chestionar:nth-child(3) div {
+  display: flex;
+  flex-direction: row;
+}
+
+/*# sourceMappingURL=quiz.css.map */

@@ -4,11 +4,10 @@ async function renderImages() {
         let containerDiv = document.querySelector(".main-content");
 
         let path = window.location.pathname;
-        let host = window.location.host;
         
         // path is /indicatoare/section
         let section = path.split("/")[2];
-        let apiPath = 'http://' + host + '/api/indicatoare/' + section;
+        let apiPath = '/api/indicatoare/' + section;
         console.log(`Requesting images from: ${apiPath}`); // Debugging log
         let response = await fetch(apiPath);
         let data = await response.json();

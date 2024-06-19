@@ -1,7 +1,6 @@
 async function renderTopUsers() {
     try {
-        let host = window.location.host;
-        let apiPath = 'http://' + host + '/api/users/top';
+        let apiPath = '/api/users/top';
         console.log(`Requesting top users from: ${apiPath}`);
         
         let response = await fetch(apiPath);

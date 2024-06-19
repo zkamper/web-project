@@ -1,34 +1,17 @@
-const fetchQuestion = async () => {
+const fetchQuestion = async (id, questions, offset) => {
     try {
-        const answeredQuestions = localStorage.getItem('answeredQuestions');
-        let parsedAnsweredQuestions = [];
-        if (answeredQuestions) {
-            parsedAnsweredQuestions = JSON.parse(answeredQuestions);
-        }
         const headers = {
             'Content-Type': 'application/json'
         }
         if (localStorage.getItem('token')) {
             headers['Authorization'] = 'Bearer ' + localStorage.getItem('token');
         }
-        const lastQuestion = localStorage.getItem('lastQuestion');
-        let response;
-        if (lastQuestion) {
-            response = await fetch(`/api/questions/${lastQuestion}`);
-        } else {
-            response = await fetch('/api/questions/random', {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({answeredQuestions: parsedAnsweredQuestions}),
-                credentials: "omit"
-            });
-        }
+        let response = await fetch(`/api/questions/${questions[id]}`);
         const question = await response.json();
         if (!response.ok) {
             // TODO: actualizeaza DOM sa reflecte eroarea
             return;
         }
-        localStorage.setItem('lastQuestion', question.id);
         const templ = document.querySelector("#question-template");
         let buttonText = ['A', 'B', 'C'];
         const clone = templ.content.cloneNode(true);
@@ -48,6 +31,11 @@ const fetchQuestion = async () => {
             image.alt = question.title;
             imageDiv.appendChild(image);
         }
+        // eliminam intrebarea anterioara inainte de a insera una noua
+        const prevQuestion = document.querySelector('.main-container')
+        if (prevQuestion) {
+            prevQuestion.remove();
+        }
         document.querySelector('.main-content').appendChild(clone);
 
         let buttons = document.querySelectorAll('.answer-button');
@@ -59,49 +47,41 @@ const fetchQuestion = async () => {
             });
         });
 
+        let prevButton = document.getElementById('prev');
         let submitButton = document.getElementById('verify');
         let nextButton = document.getElementById('next');
 
         submitButton.addEventListener('click', async () => {
             try {
+                questions = questions.filter(q => q !== question.id);
+                if(questions.length === 0) {
+                    alert("Quiz finished!");
+                }
                 const myAnswers = [];
                 buttons.forEach(button => {
                     if (button.parentElement.classList.contains('main-container__answer--selected')) {
                         myAnswers.push(parseInt(button.id));
                     }
                 });
-                const response = await fetch(`/api/questions/${question.id}`, {
+                const response = await fetch(`/api/quiz/questions/${question.id}`, {
                     method: 'POST',
                     headers: headers,
-                    body: JSON.stringify({answers: myAnswers})
+                    body: JSON.stringify({answers: myAnswers}),
+                    credentials: "include"
                 });
                 const result = await response.json();
-                if (!response.ok) {
+                if(response.status === 403) {
+                    // TODO: ceva cu cookie-uri
+                }
+                else if (!response.ok) {
                     console.log('Error submitting answer: ' + result.error);
                     return;
                 }
                 console.log(result)
-                if (result.isCorrect) {
-                    let progress = parseInt(localStorage.getItem('progress'));
-                    if (isNaN(progress)) {
-                        progress = 0;
-                    }
-                    progress++;
-                    localStorage.setItem('progress', progress.toString());
-                    if (!localStorage.getItem('token')) {
-                        let answered = JSON.parse(localStorage.getItem('answeredQuestions'))
-                        if (answered === null) {
-                            answered = [];
-                        }
-                        answered.push(question.id);
-                        localStorage.setItem('answeredQuestions', JSON.stringify(answered));
-                    }
-                    localStorage.removeItem('lastQuestion');
-                }
                 submitButton.style.display = 'none';
                 let className = result.isCorrect ? 'correct-answer' : 'wrong-answer';
                 for (const button of buttons) {
-                    if(result.answers.includes(parseInt(button.id))) {
+                    if (result.answers.includes(parseInt(button.id))) {
                         button.classList.toggle(className);
                     }
                 }
@@ -110,26 +90,48 @@ const fetchQuestion = async () => {
             }
         });
 
+        prevButton.addEventListener('click', async () => {
+            offset = offset - 1;
+            if (offset < 0) {
+                offset = questions.length - 1;
+            }
+            await fetchQuestion(offset, questions, offset);
+        });
         nextButton.addEventListener('click', async () => {
-            localStorage.removeItem('lastQuestion');
-            window.location.reload();
+            offset = offset + 1;
+            if (offset >= questions.length) {
+                offset = 0;
+            }
+            await fetchQuestion(offset, questions, offset);
         });
     } catch (error) {
         console.log('Error fetching question: ' + error);
     }
 }
-
-const updateProgressBar = () => {
-    let progress = localStorage.getItem('progress');
-    if (!progress) {
-        progress = 0;
+const loadQuiz = async () => {
+    try {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        if (localStorage.getItem('token')) {
+            headers['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+        }
+        const response = await fetch('/api/quiz', {
+            headers: headers
+        });
+        const quiz = await response.json();
+        if (!response.ok) {
+            return;
+        }
+        const questions = quiz.questions;
+        await fetchQuestion(0, questions, 0);
+    } catch (error) {
+        // TODO: insert error in DOM
+        console.log('Error loading quiz: ' + error);
     }
-    progress = parseInt(progress) / 1000 * 100;
-    document.getElementById('progress-bar').style.width = progress + '%';
 }
 
-fetchQuestion().then(async () => {
-    console.log('Question fetched');
-    updateProgressBar();
+loadQuiz().then(() => {
+    console.log('Quiz loaded');
     document.querySelector('.main-content').style.display = 'block';
 });

@@ -1,6 +1,11 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user_model");
 const handleResponse = require("./handleResponse");
+const crypto = require("crypto")
+
+function generateQuizToken() {
+    return crypto.randomBytes(16).toString('hex');
+}
 
 function generateToken(payload, secret, expiresIn) {
     return jwt.sign(payload, secret, {expiresIn});
@@ -35,4 +40,4 @@ async function handleToken(res, req) {
     return payload;
 }
 
-module.exports = {generateToken, verifyToken, handleToken};
+module.exports = {generateToken, handleToken, generateQuizToken};

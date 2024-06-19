@@ -27,11 +27,10 @@ async function renderArticle() {
         let containerDiv = document.querySelector(".right-container");
 
         let path = window.location.pathname;
-        let host = window.location.host;
 
         // path is like /indicator/sectiune
         let section = path.split("/")[2];
-        let apiPath = 'http://' + host + '/api/laws/' + section;
+        let apiPath = '/api/laws/' + section;
         let response = await fetch(apiPath);
         let data = await response.json();
         console.log(data);

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('JWT token is missing');
             }
 
-            const response = await fetch('/api/user/profile', {
+            const response = await fetch('/api/users/profile', {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + jwtToken
@@ -64,7 +64,7 @@ loginForm.addEventListener('submit', async event => {
     const newPasswordHashed = CryptoJS.SHA256(newPassword).toString();
 
     try {
-        const response = await fetch('/api/user', {
+        const response = await fetch('/api/users', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ loginForm.addEventListener('submit', async event => {
 });
 
 async function getUserData() {
-    const response = await fetch('/api/user/profile', {
+    const response = await fetch('/api/users/profile', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -3,4 +3,5 @@ const handleResponse = (res, statusCode, data) => {
     res.end(JSON.stringify(data));
 }
 
+
 module.exports = handleResponse;
