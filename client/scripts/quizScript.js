@@ -89,6 +89,10 @@ const fetchQuestion = async (id, questions, offset) => {
                     const score = document.querySelector("#score");
                     score.textContent = result.correct;
                     document.querySelector('.main-content').style.display = 'block';
+                    window.removeEventListener('beforeunload', (e) => {
+                        e.preventDefault();
+                        e.returnValue = '';
+                    })
                     return;
                 }
 
