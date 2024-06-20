@@ -117,7 +117,13 @@ async function getUserData() {
 }
 
 getUserData().then((data) => {
-    let progress = data.questionsAnswered.length / 1000 * 100;
+    let maxProgress = localStorage.getItem('maxProgress');
+    if(!maxProgress) {
+        maxProgress = 1000;
+    } else {
+        maxProgress = parseInt(maxProgress);
+    }
+    let progress = data.questionsAnswered.length / maxProgress * 100;
     localStorage.setItem('progress', JSON.stringify(data.questionsAnswered.length));
     document.getElementById('user-name').textContent = data.username;
     document.getElementById('progress-bar').style.width = progress + '%';

@@ -2,6 +2,10 @@ const handleResponse = require('../utils/handleResponse');
 const User = require('../models/user_model');
 const {handleToken, generateToken} = require("../utils/tokenUtils");
 const {topUsers} = require("../utils/getTopUsers");
+const {cleanXmlString, removeNewlines} = require("../utils/xmlUtils");
+const handleHtmlResponse = require("../utils/handleHtmlResponse");
+const fs = require('fs');
+const path = require('path');
 
 const handleRegister = async (res, req) => {
     let body = '';
@@ -188,11 +192,35 @@ const handleChangePassword = async (res, req) => {
     });
 }
 
+
+
+
+const getAdminDashboard = async (res, req) => {
+    const payload = await handleToken(res, req);
+    if (!payload) {
+        return;
+    }
+    if (!payload.isAdmin) {
+        handleResponse(res, 403, {error: 'Unauthorized'});
+        return;
+    }
+    try {
+        let data = fs.readFileSync(path.join(__dirname, '../views/admin-dashboard.html'),'utf8');
+        data = cleanXmlString(data);
+        data = removeNewlines(data);
+        handleHtmlResponse(res, 200, data);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        handleResponse(res, 500, {error: 'Error fetching dashboard'});
+    }
+}
+
 module.exports = {
     handleRegister,
     handleLogin,
     handleChangePassword,
     getTopUsers,
     deleteQuizInfo,
-    handleUserProfile
+    handleUserProfile,
+    getAdminDashboard
 }

@@ -4,6 +4,7 @@ const moment = require('moment-timezone');
 const fs = require('fs');
 const path = require('path');
 const {topUsers} = require("../utils/getTopUsers");
+const {cleanXmlString, removeNewlines} = require("../utils/xmlUtils");
 
 const getTopUsers = async () => {
     try {
@@ -13,16 +14,7 @@ const getTopUsers = async () => {
     }
 };
 
-const removeNewlines = (str) => {
-    return str.replace(/[\r\n]+/g, '');
-};
 
-const cleanXmlString = (xmlString) => {
-    let cleanedString = xmlString.replace(/\\"/g, '"').replace(/\\'/g, "'").replace(/\\n/g, '').replace(/\\t/g, '');
-    cleanedString = cleanedString.replace(/\\/g, '');
-    cleanedString = cleanedString.split('\n').map(line => line.trim()).join('\n');
-    return cleanedString;
-};
 
 const loadRss = async (res, req) => {
     try {

@@ -48,6 +48,7 @@ const fetchQuestion = async () => {
             image.alt = question.title;
             imageDiv.appendChild(image);
         }
+        localStorage.setItem('maxProgress', question.count);
         document.querySelector('.main-content').appendChild(clone);
 
         let buttons = document.querySelectorAll('.answer-button');
@@ -124,7 +125,8 @@ const updateProgressBar = () => {
     if (!progress) {
         progress = 0;
     }
-    progress = parseInt(progress) / 1000 * 100;
+    let maxProgress = localStorage.getItem('maxProgress');
+    progress = parseInt(progress) / parseInt(maxProgress) * 100;
     document.getElementById('progress-bar').style.width = progress + '%';
 }
 

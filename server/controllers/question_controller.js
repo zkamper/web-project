@@ -7,6 +7,10 @@ const {handleToken, generateQuizToken} = require("../utils/tokenUtils");
 const handleResponseWithCookie = require("../utils/handleResponseWithCookie");
 const {parseCookie} = require("../utils/parseCookie");
 
+const questionCount = async () => {
+    return Question.countDocuments();
+}
+
 const deleteQuestionById = async (res, req, id) => {
     const payload = await handleToken(res, req);
 
@@ -154,9 +158,10 @@ const getRandomQuestion = async (res, req) => {
                     handleResponse(res, 404, {error: "Question not found"});
                     return;
                 }
-
+                let count = await questionCount();
                 // remove the 'correct' field from the answers
                 const response = {
+                    count,
                     id: question.id,
                     title: question.title,
                     image: question.image,
@@ -186,8 +191,10 @@ const getQuestionById = async (res, request, id) => {
             return;
         }
 
+        let count = await questionCount();
         // remove the 'correct' field from the answers
         const response = {
+            count,
             id: question.id,
             title: question.title,
             image: question.image,

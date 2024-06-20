@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const {getLawsBySection} = require('./controllers/law_controller');
 const {getImageBySection} = require('./controllers/image_controller');
 const {addNewQuestion, deleteQuestionById, getRandomQuestion, getQuestionById, checkQuestionAnswers, handleQuiz, checkQuizQuestionAnswers} = require('./controllers/question_controller');
-const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile} = require("./controllers/user_controller");
+const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile,
+    getAdminDashboard
+} = require("./controllers/user_controller");
 const handleResponse = require("./utils/handleResponse");
 const loadRss = require('./controllers/rss_controller');
 const User = require('./models/user_model');
@@ -95,6 +97,9 @@ const makeServer = async () => {
         else if (method ==='DELETE' && path === '/api/users/profile'){
             await deleteQuizInfo(res, req); 
         }
+        else if (method === 'GET' && path === '/api/admin') {
+            await getAdminDashboard(res, req);
+        }
         //GET /api/quiz
         else if (method === 'GET' && path === '/api/quiz') {
             await handleQuiz(res,req);
@@ -108,7 +113,7 @@ const makeServer = async () => {
         else if (method === 'POST' && path === '/api/questions'){
             await addNewQuestion(res, req);
         }
-
+        //DELETE /api/questions/:id
         else if (method === 'DELETE' && path.startsWith('/api/questions/')){
             const id = path.split('/')[3];
             await deleteQuestionById(res, req, id);
