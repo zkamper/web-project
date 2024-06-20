@@ -1,3 +1,8 @@
+window.addEventListener('beforeunload', (e) => {
+    e.preventDefault();
+    e.returnValue = '';
+})
+
 const fetchQuestion = async (id, questions, offset) => {
     try {
         const headers = {
@@ -12,6 +17,7 @@ const fetchQuestion = async (id, questions, offset) => {
             // TODO: actualizeaza DOM sa reflecte eroarea
             return;
         }
+
         const templ = document.querySelector("#question-template");
         let buttonText = ['A', 'B', 'C'];
         const clone = templ.content.cloneNode(true);
@@ -54,9 +60,6 @@ const fetchQuestion = async (id, questions, offset) => {
         submitButton.addEventListener('click', async () => {
             try {
                 questions = questions.filter(q => q !== question.id);
-                if(questions.length === 0) {
-                    alert("Quiz finished!");
-                }
                 const myAnswers = [];
                 buttons.forEach(button => {
                     if (button.parentElement.classList.contains('main-container__answer--selected')) {
@@ -77,7 +80,18 @@ const fetchQuestion = async (id, questions, offset) => {
                     console.log('Error submitting answer: ' + result.error);
                     return;
                 }
-                console.log(result)
+                console.log(result);
+                if(result.finished) {
+                    document.querySelector('.main-content').remove();
+                    const finishedTemplate = document.querySelector("#finished-page");
+                    const clone = finishedTemplate.content.cloneNode(true);
+                    document.querySelector('main').appendChild(clone);
+                    const score = document.querySelector("#score");
+                    score.textContent = result.correct;
+                    document.querySelector('.main-content').style.display = 'block';
+                    return;
+                }
+
                 submitButton.style.display = 'none';
                 let className = result.isCorrect ? 'correct-answer' : 'wrong-answer';
                 for (const button of buttons) {
@@ -85,6 +99,15 @@ const fetchQuestion = async (id, questions, offset) => {
                         button.classList.toggle(className);
                     }
                 }
+
+                const correctQuestions = document.querySelector("#progress-correct");
+                const wrongQuestions = document.querySelector("#progress-wrong");
+                const progress = document.querySelector("#progress");
+
+                progress.textContent = result.correct + result.incorrect;
+                correctQuestions.textContent = result.correct;
+                wrongQuestions.textContent = result.incorrect;
+
             } catch (err) {
                 console.log('Error submitting answer: ' + err);
             }
