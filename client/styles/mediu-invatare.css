@@ -158,6 +158,35 @@
   border-radius: 15px;
 }
 
+.main-container__results {
+  width: fit-content;
+  max-width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+.main-container__results h2 {
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
+  font-size: 1.5rem;
+  color: #060606;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+.main-container__results button {
+  font-size: 1.5rem;
+  width: fit-content;
+  padding: 10px;
+  margin: 5px auto;
+}
+.main-container__results button a {
+  text-decoration: none;
+}
+
 .main-container__question {
   font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   margin-left: 1rem;

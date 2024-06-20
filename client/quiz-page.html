@@ -36,18 +36,18 @@
         <div class="main-title">Chestionar</div>
         <div class="progress-chestionar">
             <p>Întrebări rezolvate: </p>
-            <p class="progress-chestionar__value">14</p>
+            <p class="progress-chestionar__value" id="progress">0</p>
             <p>/</p>
             <p>26</p>
         </div>
         <div class="progress-chestionar">
             <div>
                 <p>Corecte: </p>
-                <p style="color: green">14</p>
+                <p style="color: green" id="progress-correct">0</p>
             </div>
             <div>
                 <p>Greșite: </p>
-                <p style="color: red">12</p>
+                <p style="color: red" id="progress-wrong">0</p>
             </div>
         </div>
         <div class="remaining-time">
@@ -56,6 +56,7 @@
         </div>
         <!-- Adăugam intrebarea dinamic -->
     </div>
+
 </main>
 </body>
 
@@ -73,6 +74,20 @@
             <button id="prev" class="submit-button prev">&lt;</button>
             <button id="verify" class="submit-button">Verifică răspuns</button>
             <button id="next" class="submit-button next">&gt;</button>
+        </div>
+    </div>
+</template>
+
+<template id="finished-page">
+    <div class="main-content">
+        <div class="main-title">Rezultat chestionar</div>
+        <div class="main-container">
+            <div class="main-container__results">
+                <h2>Scor final: <span id="score"></span></h2>
+                <button class="submit-button" id="finish">
+                    <a href="/mediu-invatare">Întoarce-te la pagina principală</a>
+                </button>
+            </div>
         </div>
     </div>
 </template>

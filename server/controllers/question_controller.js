@@ -166,7 +166,7 @@ const checkQuizQuestionAnswers = async (res, req, id) => {
                 if (quizToken.questions.length === 0) {
                     finished = true;
                     if(quizToken.username) {
-                        let user = await User.findOneAndUpdate({
+                        await User.findOneAndUpdate({
                             username: quizToken.username
                         },{
                             $inc: {
@@ -178,6 +178,7 @@ const checkQuizQuestionAnswers = async (res, req, id) => {
                             }
                         });
                     }
+                    await QuizToken.deleteOne({token: token});
                 }
                 handleResponse(res, 200, {
                     isCorrect,

@@ -42,7 +42,7 @@ const makeServer = async () => {
         const parsedUrl = url.parse(req.url, true);
         const path = parsedUrl.pathname;
         const method = req.method;
-        console.log("path: " + path + " method: " + method);
+        console.log(method + ' ' + path);
         // GET /api/laws/:section
         if (method === 'GET' && path.startsWith('/api/laws/')) {
             const section = path.split('/')[3];
