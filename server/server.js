@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const {getLawsBySection} = require('./controllers/law_controller');
 const {getImageBySection} = require('./controllers/image_controller');
-const {getRandomQuestion, getQuestionById, checkQuestionAnswers, handleQuiz, checkQuizQuestionAnswers} = require('./controllers/question_controller');
+const {addNewQuestion, deleteQuestionById, getRandomQuestion, getQuestionById, checkQuestionAnswers, handleQuiz, checkQuizQuestionAnswers} = require('./controllers/question_controller');
 const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile} = require("./controllers/user_controller");
 const handleResponse = require("./utils/handleResponse");
 const loadRss = require('./controllers/rss_controller');
@@ -103,6 +103,15 @@ const makeServer = async () => {
         else if (method === 'POST' && path.startsWith('/api/quiz/questions/')) {
             const id = path.split('/')[4];
             await checkQuizQuestionAnswers(res, req, id);
+        }
+        //POST /api/questions
+        else if (method === 'POST' && path === '/api/questions'){
+            await addNewQuestion(res, req);
+        }
+
+        else if (method === 'DELETE' && path.startsWith('/api/questions/')){
+            const id = path.split('/')[3];
+            await deleteQuestionById(res, req, id);
         }
         // invalid route
         else {

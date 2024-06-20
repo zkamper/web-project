@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Question = require('../models/question_model');
 const User = require('../models/user_model');
 const QuizToken = require('../models/quiz_model');
@@ -5,6 +6,94 @@ const handleResponse = require("../utils/handleResponse");
 const {handleToken, generateQuizToken} = require("../utils/tokenUtils");
 const handleResponseWithCookie = require("../utils/handleResponseWithCookie");
 const {parseCookie} = require("../utils/parseCookie");
+
+const deleteQuestionById = async (res, req, id) => {
+    const payload = await handleToken(res, req);
+
+    if (!payload || !payload.isAdmin) {
+        handleResponse(res, 401, { error: 'Unauthorized' });
+        return;
+    }
+
+    try {
+        // check question existance
+        const question = await Question.findOne({ id: id });
+        if (!question) {
+            handleResponse(res, 404, { error: 'Question not found' });
+            return;
+        }
+
+        // delete the question by 'id'
+        await Question.findOneAndDelete({ id: id });
+
+        handleResponse(res, 200, { success: 'Question deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting question:', error);
+        handleResponse(res, 500, { error: 'Failed to delete question' });
+    }
+};
+
+const addNewQuestion = async (res, req) => {
+    const payload = await handleToken(res, req);
+
+    if (!payload || !payload.isAdmin) {
+        handleResponse(res, 401, { error: 'Unauthorized' });
+        return;
+    }
+
+    let body = '';
+
+    req.on('data', chunk => {
+        body += chunk.toString(); // buffer to string
+    });
+
+    req.on('end', async () => {
+        try {
+            const { title, image, answers } = JSON.parse(body);
+
+            // request body validation
+            if (!title || !Array.isArray(answers) || answers.length !== 3) {
+                handleResponse(res, 400, { error: 'Invalid request body format' });
+                return;
+            }
+
+            for (const answer of answers) {
+                if (typeof answer.key !== 'number' || typeof answer.value !== 'string' || !Number.isInteger(answer.correct) || !(answer.correct === 0 || answer.correct === 1)) {
+                    handleResponse(res, 400, { error: 'Invalid answer object format' });
+                    return;
+                }
+            }
+
+            // get the maximum id in existing questions and increment it by 1
+            const maxIdQuestion = await Question.findOne().sort({ id: -1 }).limit(1);
+            let nextId = 1;
+
+            if (maxIdQuestion) {
+                nextId = maxIdQuestion.id + 1;
+            }
+
+            const newQuestion = new Question({
+                id: nextId,
+                title,
+                image,
+                answers
+            });
+
+            // attempt to save the question
+            const savedQuestion = await newQuestion.save();
+            if (!savedQuestion){
+                console.error('Error saving question:', error);
+                handleResponse(res, 500, { error: 'Failed to save question' });
+            } else {
+                handleResponse(res, 201, { success: 'Question saved successfully' });
+            }
+
+        } catch (error) {
+            console.error('Error saving question:', error);
+            handleResponse(res, 500, { error: 'Failed to save question' });
+        }
+    });
+};
 
 const getRandomQuestion = async (res, req) => {
     let body = '';
@@ -278,6 +367,8 @@ const handleQuiz = async (res, req) => {
 }
 
 module.exports = {
+    addNewQuestion,
+    deleteQuestionById,
     getRandomQuestion,
     getQuestionById,
     checkQuestionAnswers,
