@@ -85,7 +85,7 @@ const addNewQuestion = async (res, req) => {
                 console.error('Error saving question:', error);
                 handleResponse(res, 500, { error: 'Failed to save question' });
             } else {
-                handleResponse(res, 201, { success: 'Question saved successfully' });
+                handleResponse(res, 201, { success: 'Question saved successfully', id: nextId });
             }
 
         } catch (error) {

@@ -1,7 +1,9 @@
-window.addEventListener('beforeunload', (e) => {
+const unload = async (e) => {
     e.preventDefault();
     e.returnValue = '';
-})
+}
+
+window.addEventListener('beforeunload', unload);
 
 const fetchQuestion = async (id, questions, offset) => {
     try {
@@ -87,12 +89,15 @@ const fetchQuestion = async (id, questions, offset) => {
                     const clone = finishedTemplate.content.cloneNode(true);
                     document.querySelector('main').appendChild(clone);
                     const score = document.querySelector("#score");
+                    const admis = document.querySelector("#passed");
+                    if(result.correct >= 22) {
+                        admis.textContent = "ADMIS!";
+                    } else {
+                        admis.textContent = "PICAT!";
+                    }
                     score.textContent = result.correct;
                     document.querySelector('.main-content').style.display = 'block';
-                    window.removeEventListener('beforeunload', (e) => {
-                        e.preventDefault();
-                        e.returnValue = '';
-                    })
+                    window.removeEventListener('beforeunload',unload);
                     return;
                 }
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/user.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="scripts/navbarScript.js" defer></script>
+    <script src="https://kit.fontawesome.com/2451e89b81.js" crossorigin="anonymous"></script>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <title>Admin Dashboard</title>
+</head>
+
+<body class="user-page">
+<nav class="navbar">
+    <div class="brand-title"><a href="/">Traffic instructor</a></div>
+    <div class="toggle-button">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="/mediu-invatare">Mediu de învățare</a></li>
+            <li><a href="/indicatoare">Indicatoare Rutiere</a></li>
+            <li><a href="/legislatie">Legislație</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <div class="main-content">
+        <script src="scripts/adminDashboard.js" defer></script>
+        <div class="main-title">
+            Dashboard Admin
+        </div>
+        <div class="container dashboard">
+            <form class="container__form" id="add-question">
+                <h2>Adaugă o intrebare</h2>
+                <div class="container__input text-question">
+                    <label for="question">Text întrebare:</label>
+                    <textarea type="text" id="question" required></textarea>
+                </div>
+                <div class="container__input text-question">
+                    <label for="question-image">URL Imagine (Opțional):</label>
+                    <input type="text" id="question-image">
+                </div>
+                <div class="container__input answer-container">
+                    <label for="answer-1">Raspuns A:</label>
+                    <textarea type="text" id="answer-1" required></textarea>
+                    <input type="checkbox" id="correct-1" name="correct-1" value="A">
+                </div>
+                <div class="container__input answer-container">
+                    <label for="answer-2">Raspuns B:</label>
+                    <textarea type="text" id="answer-2" required></textarea>
+                    <input type="checkbox" id="correct-2" name="correct-2" value="B">
+                </div>
+                <div class="container__input answer-container">
+                    <label for="answer-3">Raspuns C:</label>
+                    <textarea type="text" id="answer-3" required></textarea>
+                    <input type="checkbox" id="correct-3" name="correct-3" value="C">
+                </div>
+                <div class="container__submit">
+                    <button type="submit">Adaugă întrebare</button>
+                </div>
+                <div class="container__status">
+                    <p id="response-status-post"></p>
+                </div>
+            </form>
+            <form class="container__form" id="delete-question">
+                <h2>Șterge o intrebare</h2>
+                <div class="container__input">
+                    <label for="question-id">ID întrebare:</label>
+                    <input type="number" id="question-id" required>
+                </div>
+                <div class="container__submit">
+                    <button type="submit">Șterge întrebare</button>
+                </div>
+                <div class="container__status">
+                    <p id="response-status-delete"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

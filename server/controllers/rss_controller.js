@@ -3,7 +3,6 @@ const handleResponse = require("../utils/handleResponse");
 const moment = require('moment-timezone');
 const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
 const {topUsers} = require("../utils/getTopUsers");
 
 const getTopUsers = async () => {
@@ -37,12 +36,10 @@ const loadRss = async (res, req) => {
         //fill the template
         let items = topUsers.map((user) => {
             // generate a unique GUID for each item
-            const guid = `http://localhost/mediu-invatare/${uuidv4()}`;
 
             return `<item>
                 <title><![CDATA[${user.username}]]></title>
                 <link>http://localhost/mediu-invatare</link>
-                <guid>${guid}</guid>
                 <description><![CDATA[Score: ${user.score.toFixed(2)}]]></description>
             </item>`;
         }).join('');

@@ -26,8 +26,7 @@
   flex-direction: column;
   border-radius: 15px;
   max-width: 720px;
-  width: fit-content;
-  padding: 2rem 10vh;
+  width: 50%;
   margin: 0 auto;
 }
 .container p {
@@ -50,21 +49,26 @@
   margin-bottom: 1rem;
 }
 
+.dashboard {
+  flex-direction: row;
+}
+.dashboard form {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  padding: 1rem;
+}
+
 .container__input {
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 100%;
   margin: 10px 0;
-  align-items: center;
-  justify-content: flex-start;
 }
 .container__input label {
   font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
   font-size: 15px;
   color: #060606;
   font-weight: 300;
-  margin-left: 1rem;
 }
 .container__input input {
   font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
@@ -74,6 +78,9 @@
   font-weight: 300;
   border: 1px solid #060606;
   border-radius: 5px;
+}
+.container__input textarea {
+  font-family: "Roboto", Helvetica, "Helvetica Neue", serif;
 }
 
 .submit-button {
@@ -137,6 +144,12 @@
   text-align: end;
   padding-right: 5px;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=user.css.map */
