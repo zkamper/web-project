@@ -47,13 +47,30 @@ loginForm.addEventListener('submit', async event => {
     }
 })
 
+const validateUsername = (username) => {
+    const regex = /^[a-zA-Z0-9_.]{3,}$/;
+    return regex.test(username);
+}
+
 registerForm.addEventListener('submit', async event => {
     event.preventDefault();
     const username = event.target.username.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+    console.log(validateUsername(username));
+    if(!validateUsername(username)) {
+        document.getElementById("invalid").textContent = "Username invalid. Trebuie să aiba minim 3 caractere și să conțină doar caractere alfanumerice, . sau _";
+        return;
+    } else {
+        document.getElementById("invalid").textContent = "";
+    }
+    if(password.length < 8) {
+        document.getElementById("invalid-2").textContent = "Parola trebuie să aibă minim 8 caractere";
+        return;
+    } else {
+        document.getElementById("invalid-2").textContent = "";
+    }
     const hashedPwd = CryptoJS.SHA256(password).toString();
-
     try {
         const response = await fetch('/api/register',{
             method: 'POST',
