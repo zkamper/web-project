@@ -6,6 +6,25 @@
   text-align: center;
 }
 
+.download-csv {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #f5f5f5;
+  color: #333333;
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.1s;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 10px;
+  align-self: flex-start;
+}
+.download-csv:hover {
+  background-color: #553fcf;
+  color: #f5f5f5;
+}
+
 .login-page {
   display: flex;
   justify-content: center;

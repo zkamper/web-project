@@ -7,7 +7,7 @@ const {addNewQuestion, deleteQuestionById, getRandomQuestion, getQuestionById, c
     searchQuestions
 } = require('./controllers/question_controller');
 const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile,
-    getAdminDashboard
+    getAdminDashboard, getUsersCSV
 } = require("./controllers/user_controller");
 const handleResponse = require("./utils/handleResponse");
 const loadRss = require('./controllers/rss_controller');
@@ -123,8 +123,13 @@ const makeServer = async () => {
         else if (method === 'DELETE' && path.startsWith('/api/questions/')){
             const id = path.split('/')[3];
             await deleteQuestionById(res, req, id);
-        } else if (method === 'GET' && path === '/api/search') {
+        }
+        // GET /api/search?search=...
+        else if (method === 'GET' && path === '/api/search') {
             await searchQuestions(res,req,parsedUrl.query.search)
+        }
+        else if (method === 'GET' && path === '/api/users.csv') {
+            await getUsersCSV(res,req);
         }
         // invalid route
         else {

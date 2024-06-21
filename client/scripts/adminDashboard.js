@@ -4,6 +4,30 @@ const loadAdminDashboard = async () => {
 
 const postForm = document.getElementById("add-question");
 const deleteForm = document.getElementById("delete-question");
+const csvButton = document.querySelector('.download-csv');
+
+csvButton.addEventListener('click', async event => {
+    const response = await fetch('/api/users.csv', {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    });
+    if (!response.ok) {
+        const data = await response.json();
+        alert(data.error);
+        return;
+    }
+    let csv = await response.text();
+    const a = document.createElement('a');
+    const blob = new Blob([csv], {type: 'text/csv'});
+    const url = URL.createObjectURL(blob);
+    a.href = url;
+    a.download = `users.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+})
 
 deleteForm.addEventListener('submit', async event => {
     event.preventDefault();

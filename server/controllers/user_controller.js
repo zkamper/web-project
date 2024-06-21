@@ -192,7 +192,33 @@ const handleChangePassword = async (res, req) => {
     });
 }
 
-
+const getUsersCSV = async (res, req) => {
+    const payload = await handleToken(res, req);
+    if (!payload) {
+        return;
+    }
+    if (!payload.isAdmin) {
+        handleResponse(res, 403, {error: 'Unauthorized'});
+        return;
+    }
+    try {
+        const users = await User.find();
+        let csv = 'username,email,questions-answered,quiz-average,quiz-count\n';
+        for (let i = 0; i < users.length; i++) {
+            let avg = 0;
+            if(users[i].quizScoreCount > 0){
+                avg = users[i].quizScoreTotal / users[i].quizScoreCount;
+            }
+            csv += `${users[i].username},${users[i].email},${users[i].questionsAnswered.length},${avg},${users[i].quizScoreCount}\n`;
+        }
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Disposition', 'attachment; filename=users.csv');
+        res.end(csv);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        handleResponse(res, 500, {error: 'Error fetching users'});
+    }
+}
 
 
 const getAdminDashboard = async (res, req) => {
@@ -222,5 +248,6 @@ module.exports = {
     getTopUsers,
     deleteQuizInfo,
     handleUserProfile,
-    getAdminDashboard
+    getAdminDashboard,
+    getUsersCSV
 }
