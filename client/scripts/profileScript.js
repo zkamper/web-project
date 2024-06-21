@@ -107,6 +107,7 @@ async function getUserData() {
         }
     })
     const data = await response.json();
+    console.log(data)
     if (!response.ok) {
         alert(data.error);
         localStorage.removeItem('token');

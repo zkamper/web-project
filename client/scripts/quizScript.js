@@ -165,5 +165,25 @@ const loadQuiz = async () => {
 
 loadQuiz().then(() => {
     console.log('Quiz loaded');
+    let time = 1800; // 30 minute
+    const timer = document.getElementById('remaining-time')
+    let intervalId = setInterval(() => {
+        time -= 1;
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        console.log(timer)
+        timer.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        if(time === 0) {
+            clearInterval(intervalId)
+            document.querySelector('.main-content').remove();
+            const finishedTemplate = document.querySelector("#finished-page");
+            const clone = finishedTemplate.content.cloneNode(true);
+            document.querySelector('main').appendChild(clone);
+            const admis = document.querySelector("#passed");
+            admis.textContent = 'Timpul a expirat!'
+            document.querySelector('.main-content').style.display = 'block';
+            window.removeEventListener('beforeunload',unload);
+        }
+    }, 1000);
     document.querySelector('.main-content').style.display = 'block';
 });

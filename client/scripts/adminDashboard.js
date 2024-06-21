@@ -88,5 +88,6 @@ postForm.addEventListener('submit', async event => {
 });
 
 loadAdminDashboard().then(() => {
+
     console.log('Admin Dashboard loaded');
 });
