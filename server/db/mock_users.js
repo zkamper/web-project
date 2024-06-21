@@ -8,8 +8,11 @@ async function run() {
     for(let i = 0; i < 10; i++) {
         let count = Math.floor(Math.random() * 10);
         let quizScores = [];
+        let quizScoreTotal = 0;
         for(let j = 0; j < count; j++){
-            quizScores.push(Math.ceil(Math.random() * 26));
+            let score = Math.ceil(Math.random() * 26);
+            quizScores.push({score: score});
+            quizScoreTotal += score;
         }
         let countAnswered = Math.floor(Math.random() * 500);
         // generate a random array with numbers between 1 and 999
@@ -24,7 +27,7 @@ async function run() {
             hashedPassword: CryptoJS.SHA256(faker.internet.password()).toString(),
             questionsAnswered: questionsAnswered,
             quizScoreCount: count,
-            quizScoreTotal: quizScores.reduce((a, b) => a + b, 0),
+            quizScoreTotal: quizScoreTotal,
             quizScores: quizScores
         })
         await user.save();

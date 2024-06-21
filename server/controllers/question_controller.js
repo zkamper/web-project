@@ -270,7 +270,10 @@ const checkQuizQuestionAnswers = async (res, req, id) => {
                                 quizScoreTotal: quizToken.correctAnswers
                             },
                             $push: {
-                                quizScores: quizToken.correctAnswers
+                                quizScores: {
+                                    score: quizToken.correctAnswers,
+                                    date: new Date()
+                                }
                             }
                         });
                     }
