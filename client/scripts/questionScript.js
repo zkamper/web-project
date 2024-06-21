@@ -29,6 +29,21 @@ const fetchQuestion = async (id) => {
             image.alt = question.title;
             imageDiv.appendChild(image);
         }
+
+        const downloadButton = document.getElementById('download-json');
+        downloadButton.addEventListener('click', () => {
+            const a = document.createElement('a');
+            const jsonData = JSON.stringify(question,null,4);
+            const blob = new Blob([jsonData], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            a.href = url;
+            a.download = `question-${id}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        })
+
         document.querySelector('.main-content').appendChild(questionElement);
     } catch(err) {
         console.log('Error fetching question: ' + err);
