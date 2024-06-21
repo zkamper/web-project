@@ -183,7 +183,7 @@ const getRandomQuestion = async (res, req) => {
     });
 };
 
-const getQuestionById = async (res, request, id) => {
+const getQuestionById = async (res, request, id,full) => {
     try {
         const question = await Question.findOne({id: parseInt(id)});
         if (!question) {
@@ -193,15 +193,25 @@ const getQuestionById = async (res, request, id) => {
 
         let count = await questionCount();
         // remove the 'correct' field from the answers
+        let answers;
+        if(full) {
+            answers = question.answers.map(answer => ({
+                key: answer.key,
+                value: answer.value,
+                correct: answer.correct
+            }))
+        } else {
+            answers = question.answers.map(answer => ({
+                key: answer.key,
+                value: answer.value
+            }))
+        }
         const response = {
             count,
             id: question.id,
             title: question.title,
             image: question.image,
-            answers: question.answers.map(answer => ({
-                key: answer.key,
-                value: answer.value
-            }))
+            answers
         };
 
         handleResponse(res, 200, response);
@@ -374,7 +384,26 @@ const handleQuiz = async (res, req) => {
         await QuizToken.deleteOne({token: token});
     }, 1800000); // 30 minute cat dureaza examenul
     let cookie = [`quizToken=${token}; Max-Age=1800; SameSite=Strict;`] // 30 minute cat dureaza examenul
-    await handleResponseWithCookie(res, 200, {questions: questionIDs}, cookie);
+    handleResponseWithCookie(res, 200, {questions: questionIDs}, cookie);
+}
+
+const searchQuestions = async (res,req,searchString) => {
+    const results = await Question.find({
+        $text: {
+            $search: searchString
+        }
+    },{
+        _id: 0,
+        id: 1,
+        title: 1
+    })
+        .sort({score: {$meta: 'textScore'}})
+        .limit(10);
+    if(results.length === 0) {
+        handleResponse(res,404, {error: "Nu am putut găsi nici o intrebare"})
+        return;
+    }
+    handleResponse(res,200, results)
 }
 
 module.exports = {
@@ -384,5 +413,6 @@ module.exports = {
     getQuestionById,
     checkQuestionAnswers,
     handleQuiz,
-    checkQuizQuestionAnswers
+    checkQuizQuestionAnswers,
+    searchQuestions
 };

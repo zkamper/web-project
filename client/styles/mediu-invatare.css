@@ -59,6 +59,24 @@
   background-color: #553fcf;
   color: #432981;
 }
+.main-container__answer .answer-button-preview {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1rem;
+  border: none;
+  background-color: #f5f5f5;
+  color: #333333;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+.main-container__answer .answer-button-preview__correct {
+  background-color: #553fcf;
+  color: #432981;
+}
 .main-container__answer .correct-answer {
   box-shadow: 0 0 15px green;
 }

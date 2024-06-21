@@ -44,8 +44,7 @@
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 5px;
-  margin: 0 auto;
-  margin-top: 30px;
+  margin: 30px auto 0;
   width: 50%;
 }
 .main-container a:hover {
@@ -93,11 +92,11 @@
 .main-container .sections__search-bar .search-bar__container .search-icon {
   position: absolute;
   top: 50%;
-  right: 10px; /* Adjust as needed */
+  right: 10px;
   transform: translateY(-50%);
-  width: 24px; /* Adjust as needed */
-  height: 24px; /* Adjust as needed */
-  fill: #333; /* Adjust as needed */
+  width: 24px;
+  height: 24px;
+  fill: #333;
 }
 .main-container .sections__search-bar input {
   font-family: "Roboto", Helvetica, "Helvetica Neue";

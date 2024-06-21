@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/search.css">
+    <script src="scripts/navbarScript.js" defer></script>
+    <script src="scripts/searchScript.js" defer></script>
+    <script src="https://kit.fontawesome.com/2451e89b81.js" crossorigin="anonymous"></script>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <title>Caută o întrebare</title>
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="brand-title"><a href="/">Traffic instructor</a></div>
+    <div class="toggle-button">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="/mediu-invatare">Mediu de învățare</a></li>
+            <li><a href="/indicatoare">Indicatoare Rutiere</a></li>
+            <li><a href="/legislatie">Legislație</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <div class="main-content">
+        <div class="main-title">Caută întrebare</div>
+        <div class="container">
+            <div class="sections__search-bar">
+                <div class="search-bar__container">
+                    <form method="get" action="">
+                        <input type="text" id="search-bar" placeholder="Caută întrebare" name="search" required>
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                        </svg>
+                    </form>
+                </div>
+            </div>
+            <div class="container__result">
+                <!-- umplut dinamic -->
+            </div>
+            <div class="container__error">
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+<template id="error">
+    <div class="container__error">
+        <p id="error-message"></p>
+    </div>
+</template>
+
+<template id="question">
+    <div class="container__question">
+        <a id="question-path">
+            <p id="question-index">
+                1
+            </p>
+            <p id="question-text">
+                În ce situație este interzisă depășirea?
+            </p>
+        </a>
+    </div>
+</template>
+
+</html>

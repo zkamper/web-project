@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 
 const {getLawsBySection} = require('./controllers/law_controller');
 const {getImageBySection} = require('./controllers/image_controller');
-const {addNewQuestion, deleteQuestionById, getRandomQuestion, getQuestionById, checkQuestionAnswers, handleQuiz, checkQuizQuestionAnswers} = require('./controllers/question_controller');
+const {addNewQuestion, deleteQuestionById, getRandomQuestion, getQuestionById, checkQuestionAnswers, handleQuiz, checkQuizQuestionAnswers,
+    searchQuestions
+} = require('./controllers/question_controller');
 const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile,
     getAdminDashboard
 } = require("./controllers/user_controller");
@@ -11,6 +13,7 @@ const handleResponse = require("./utils/handleResponse");
 const loadRss = require('./controllers/rss_controller');
 const User = require('./models/user_model');
 const QuizToken = require('./models/quiz_model');
+const Question = require('./models/question_model')
 
 // Server setup
 const http = require('http');
@@ -28,6 +31,8 @@ async function main() {
         await mongoose.connect(process.env.MONGO_HOST);
         await User.createCollection();
         await QuizToken.createCollection();
+        Question.schema.index({title: 'text'});
+        await Question.createIndexes();
         await makeServer();
     } catch (error) {
         console.log('Error connecting to MongoDB: ' + error);
@@ -62,7 +67,8 @@ const makeServer = async () => {
         //GET /api/question/:id
         else if (method === 'GET' && path.startsWith('/api/questions/')) {
             const id = path.split('/')[3];
-            await getQuestionById(res, req, id);
+            const full = parsedUrl.query.full === 'true';
+            await getQuestionById(res, req, id,full);
         }
         //POST /api/question/:id
         else if (method === 'POST' && path.startsWith('/api/questions/')) {
@@ -117,6 +123,8 @@ const makeServer = async () => {
         else if (method === 'DELETE' && path.startsWith('/api/questions/')){
             const id = path.split('/')[3];
             await deleteQuestionById(res, req, id);
+        } else if (method === 'GET' && path === '/api/search') {
+            await searchQuestions(res,req,parsedUrl.query.search)
         }
         // invalid route
         else {
