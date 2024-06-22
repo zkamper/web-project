@@ -103,6 +103,7 @@ const makeServer = async () => {
         else if (method ==='DELETE' && path === '/api/users/profile'){
             await deleteQuizInfo(res, req); 
         }
+        //GET /api/admin
         else if (method === 'GET' && path === '/api/admin') {
             await getAdminDashboard(res, req);
         }
@@ -128,6 +129,7 @@ const makeServer = async () => {
         else if (method === 'GET' && path === '/api/search') {
             await searchQuestions(res,req,parsedUrl.query.search)
         }
+        // GET /api/users.csv
         else if (method === 'GET' && path === '/api/users.csv') {
             await getUsersCSV(res,req);
         }
