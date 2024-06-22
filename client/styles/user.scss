@@ -128,22 +128,27 @@ $hoverColor: #553fcf;
     border-radius: 10px;
 }
 
-.container__grid {
-    margin-top: 2rem;
+#container__grid {
+    display: none; /* Hide by default */
+}
+
+#container__grid > p {
+    margin-top: 10px; /* Add desired margin-top value here */
 }
 
 .results-container {
+    display: none; /* Hide by default */
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    background-color: $hoverColor;
+    background-color: hsl(214, 38%, 46%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 720px;
+    margin: 1rem auto;
 }
 
-.results-container h3 {
-    margin-top: 0;
+.results-container p {
+    margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
     font-weight: normal; /* Remove bold font weight */
@@ -189,7 +194,6 @@ $hoverColor: #553fcf;
 .grid-item p:last-child {
     margin-bottom: 0;
 }
-
 
 .container__submit {
     display: flex;
