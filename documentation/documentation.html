@@ -9,11 +9,15 @@
             margin-bottom: 1rem;
         }
         body {
-            font-family: "Roboto", Helvetica, 'Helvetica Neue';
-            margin: 3rem;
-            margin-top: 0;
+            font-family: "Roboto", Helvetica, 'Helvetica Neue',serif;
+            margin: 0 3rem 3rem;
             max-width: 700px;
             text-align: justify;
+        }
+        img {
+            max-width: 150%;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
     <link
@@ -41,7 +45,7 @@
                         </span>
                         <ul>
                             <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-                                <a href="gabriel_jiglau@yahoo.com" property="schema:email">gabriel_jiglau@yahoo.com</a>
+                                <a href="mailto:gabriel_jiglau@yahoo.com" property="schema:email">gabriel_jiglau@yahoo.com</a>
                             </li>
                         </ul>
                     </li>
@@ -55,7 +59,7 @@
                         </span>
                         <ul>
                             <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-                                <a href="ionut.calin645@gmail.com" property="schema:email">ionut.calin645@gmail.com</a>
+                                <a href="mailto:ionut.calin645@gmail.com" property="schema:email">ionut.calin645@gmail.com</a>
                             </li>
                         </ul>
                     </li>
@@ -72,8 +76,6 @@
                                     <span property="schema:name">UAIC</span>
                                 </span>
                             </span>
-                        </span>
-                        </span>
                         </span>
                     </li>
                 </ul>
@@ -117,7 +119,8 @@
                         <li><a href="#account-creation">Account Creation</a></li>
                         <li><a href="#studying">Studying</a></li>
                         <li><a href="#quiz-solving">Quiz Solving</a></li>
-                        <li><a href="#exporting-data">Data Exporting</a></li>
+                        <li><a href="#admin">Admin Dashboard</a></li>
+                        <li><a href="#export-and-rss">Data Exporting and RSS</a></li>
                     </ul>
                 </li>
             </ul>
@@ -129,7 +132,7 @@
                 <p>
                     RoT is a web application and API that allows its visitors to prepare for the auto exam. It provides
                     a learning environment where users can learn about traffic signs and the legistlation, but also test
-                    their knowledge through a gamified approach.
+                    their knowledge through a gamified approach, consisting of solving quizzes and questions.
                 </p>
             </section>
             <section>
@@ -149,7 +152,9 @@
                     auto-generated quiz, progress tracker and a page where you can manage your user profile.
                 </p>
                 <p>
-                    The website will also have an API that can be used by other applications to communicate and get data from the application, data which can be exported as either a CSV or JSON file.
+                    The website will also have a public API with an OpenAPI specification that can be used by other applications
+                    to communicate and get data from the application, data which is exported as JSON files. Admins can also import
+                    questions through JSON and export data about the users as a CSV.
                 </p>
             </section>
             <section>
@@ -161,6 +166,9 @@
                             support</a></li>
                     <li><a href="https://www.codrutier.ro/codul-rutier">Data about the legistlation and traffic
                             signs</a></li>
+                    <li><a href="https://www.scoalarutiera.ro">Data about the questions</a></li>
+                    <li><a href="https://www.npmjs.com/package/crypto-js">Crypto-js</a></li>
+                    <li><a href="https://nodejs.org/en/">Node.js</a></li>
                 </ul>
             </section>
         </section>
@@ -179,14 +187,14 @@
                 <ul>
                     <li>Being able to create and log into an account on the platform;</li>
                     <li>Study the laws and signs on a organized page;</li>
-                    <li>Search for a certain article/sign</li> <!--TO-DO-->
+                    <li>Search for a certain question</li>
                     <li>Provide all the questions that can appear on the permit exam;</li>
                     <li>Auto-generate quizzez;</li>
                     <li>Track your progress;</li>
                     <li>Leaderboard with the most hardworking users</li>
                     <li>The site with a REST API can provide questions, laws or signs to external parties;</li>
                     <li>Being able to export data in CSV and/or JSON formats;</li>
-                    <li>Having the possibility to manage forms inside the web application as an administrator;</li>
+                    <li>Having the possibility to manage questions and info about users inside the web application as an administrator;</li>
                     <li>Export the leaderboard as a RSS feed;</li>
                 </ul>
             </section>
@@ -213,7 +221,9 @@
                     <li>Administrators
                         <ul>
                             <li>they can modify and update the data shown on the site;</li>
-                            <li>they can export the site's data (leaderboards, questions, information) in CSV or JSON formats;</li>
+                            <li>create questions;</li>
+                            <li>delete questions;</li>
+                            <li>export the users and their scores as a CSV file;</li>
                         </ul>
                     </li>
                 </ol>
@@ -243,23 +253,22 @@
                     an account on the "Register" form. To make an account they must complete the e-mail, username and
                     password fields. If they are filled correctly, the account will be made and the user will be
                     redirected to the "Login" page to authenticate.</p>
-                <p>After logged in, the "Login" button in the navbar will be replaced by a "User" page, where the user
-                    can change their password, reset their progress or find help about how to use the app.</p>
+                <p>After logged in, the "Login" button in the navbar will be replaced by a "Profile" button which redirects to the user profile,
+                    where the user can change their password, reset their progress or find help about how to use the app.</p>
                 <p>The "Legislation" page is separated into chapters, which each chapter pertaining to a certain
                     subject. By clicking on a chapter, the user is redirected to the main articles in the law regarding
                     that chapter.</p>
                 <p>The "Traffic Signs" page is also separated into categories, which each category presenting its
                     corresponding signs, with the image, title and description of the sign.</p>
-                </p>
                 <p>On the "Practice" page, the user is presented with two buttons which redirect them to a page where
-                    they can exercise questions, or do a quiz. This page also shows a leaderboard of the most
-                    hardworking users.</p>
+                    they can exercise questions, or do a quiz. They can also search for a certain question. This page also shows a
+                    leaderboard of the most hardworking users.</p>
                 <p>The "Exercise questions" page provides the user with a randomly chosen question from all the possible
-                    questions (if the user is logged in it only gives them unsolved questions). The user can choose
-                    either one or more responses to verify, or skip the question alltogether. At the top, there is a
-                    progress bar where they can keep tab of the progress.</p>
+                    questions that they haven't solved yes. The user can choose either one or more responses to verify,
+                    or skip the question alltogether. At the top, there is a progress bar where they can keep tab of the progress.</p>
                 <p>The "Quiz" page will have a similar interface to the "Exercise questions" page, except instead of a
-                    progress bar it will have a timer and show how many questions are remaining.</p>
+                    progress bar it will have a timer and show how many questions are remaining. At the end it shows you
+                    your final score and if you have passed or failed.</p>
             </section>
             <section>
                 <h3 id="hardware_interfaces">3.2.Hardware Interfaces</h3>
@@ -268,7 +277,22 @@
             </section>
             <section>
                 <h3 id="software_interfaces">3.3.Software Interfaces</h3>
-                <p>Our API will store and process information in a Database, </p>
+                <p>The software interfaces in the project are:</p>
+                <ul>
+                    <li>
+                        Our app API, which facilitates the communication between the front and back end. It also features a
+                        public API, with the Swagger page available at <a href="/docs">/docs</a>.
+                        <!-- TODO: imagine swagger -->
+                    </li>
+                    <li>
+                        The database, which is provided by MongoDB, and is accessed through the Mongoose library. It contains all
+                        the info about the users, questions, laws and signs. Mongoose facilitates the communication between the
+                        app and the database, allowing for CRUD operations.
+                    </li>
+                    <li>
+                        For routing, we use nginx, which is a web server that also acts as a reverse proxy.
+                    </li>
+                </ul>
             </section>
             <section>
                 <h3 id="communication_interfaces">3.4.Communication Interfaces</h3>
@@ -283,64 +307,171 @@
                     <h4 id="description_and_priority_1">4.1.1.Description and Priority</h4>
                     <p>The user can choose to create an account on the platform, so that he can track his progress and
                         compete with other users on the leaderboard. The priority of this feature is high, as it is
-                        essential for the users to keep track.</p>
-                    </p>
+                        essential for the users to keep track of their progress.</p>
+                    <!--TODO: imagine login page-->
                 </section>
                 <section>
                     <h4 id="stimulus_response_sequences_1">4.1.2.Stimulus/Response Sequences</h4>
-                    <p>When the user clicks on the "Register" button, a form will appear where he can fill in his e-mail, username and password. All these fields are required, with certain restrictions on the password. If the fields are filled correctly, the account will be created and the user will be redirected to the "Login" page. There he can log in on the application, choosing to be remembered at the next session. After logging in, the "Login" button will be replaced by a "User" button, where the user can change his password, reset his progress or find help about how to use the app.</p>
+                    <p>When the user clicks on the "Register" button, a form will appear where he can fill in his e-mail,
+                        username and password. All these fields are required, with certain restrictions on the password.
+                        If the fields are filled correctly, the account will be created and the user will be redirected to the "Login" page.
+                        There he can log in on the application, choosing to be remembered at the next session.
+                        After logging in, the "Login" button will be replaced by a "Profile" button, where the user can change his password,
+                        reset his progress or find help about how to use the app.</p>
                 </section>
                 <section>
                     <h4 id="functional_requirements_1">4.1.3.Functional Requirements</h4>
-                    <p>TBD</p>
-                </section>
-            </section>
-            <section>
-                <h3 id="studying">4.2.Studying</h3>
-                <section>
-                    <h4 id="description_and_priority_1">4.2.1.Description and Priority</h4>
-                    <p>The user can study the laws and signs on the platform. The priority of this feature is high, as it is essential for the users to learn the necessary information for the permit exam.</p>
-                </section>
-                <section>
-                    <h4 id="stimulus_response_sequences_1">4.2.2.Stimulus/Response Sequences</h4>
-                    <p>When on the page "Legislation" or "Traffic Signs", the user can click on a chapter or category to see the articles or signs. The user can also search for a certain article or sign using the search bar provided on each page.</p>
-                </section>
-                <section>
-                    <h4 id="functional_requirements_1">4.2.3.Functional Requirements</h4>
-                    <p>TBD</p>
+                    <ul>
+                        <li>The system must allow users to create and login into their accounts;</li>
+                        <li>Usernames must be at least 3 characters long and can only include alphanumeric characters and the symbols . _</li>
+                        <li>For security reasons, passwords are hashed on the frontend before being sent to the backend</li>
+                        <li>
+                            On login, if credentials are ok, the user receives in the response a JWT that they provide on further requests; this JWT
+                            is stored in the localStorage
+                        </li>
+                    </ul>
                 </section>
             </section>
 
             <section>
-                <h3 id="quiz-solving">4.3.Quiz Solving (gamification aspect)</h3>
+                <h3 id="profile">4.2.Profile Management</h3>
                 <section>
-                    <h4 id="description_and_priority_1">4.3.1.Description and Priority</h4>
-                    <p>The user can practice for the permit exam by solving questions or quizzez. The priority of this feature is high, because it is important to test your knowledge before taking the exam.</p>
+                    <h4 id="description_and_priority_2">4.2.1.Description and Priority</h4>
+                    <p>
+                        On the profile page, the user can change their password, see and reset the progress, and find help about how to use the app.
+                        The priority of this feature is high, as it is essential for the users to keep track of their progress.
+                    </p>
+                    <img src="docs-static/profil.png" alt="Profile page">
                 </section>
                 <section>
-                    <h4 id="stimulus_response_sequences_1">4.3.2.Stimulus/Response Sequences</h4>
-                    <p>When on the "Practice" page, the user is presented with a leaderboard of the most hardowrking students, and two buttons. The first button leads to the "Exercise questions" page. The 2nd button leads to the "Quiz" page. Both pages have a common component, that is the question with three answers, of which the user can select either one or more. On the "Exercise questions" page, the user has a search bar where they can search for a specific question. Under it, there is a progress bar to keep track of how much they have solved. On the "Quiz" page, instead of the progress bar and the search bar, there is a timer and a counter for how much they have solved. All the questions are provided by the API to the front-end.</p>
+                    <h4 id="stimulus_response_sequences_2">4.2.2.Stimulus/Response Sequences</h4>
+                    <p>
+                        When the user clicks on the "Profile" button, he is redirected to the profile page.
+                        Here, he can change his password by filling in the old password and the new password. If they don't match, an error message is shown.
+                        The user can also reset his progress, which will delete all the progress he has made so far.
+                        The progress is shown as a bar for the amount of questions answered, and as a grid that contains the scores and dates of the quizzes.
+                    </p>
                 </section>
                 <section>
-                    <h4 id="functional_requirements_1">4.3.3.Functional Requirements</h4>
-                    <p>TBD</p>
+                    <h4 id="functional_requirements_2">4.2.3.Functional Requirements</h4>
+                    <ul>
+                        <li>Old and new password are hashed for security reasons, if they dont match the server responds with a corresponding error;</li>
+                        <li>When the user resets the progress, the server deletes all the progress he has made so far;</li>
+                        <li>The profile page is shown only to authenticated users, trying to access it without being logged in will redirect them to the login page;</li>
+                        <li>The progress bar must reflect the user progress;</li>
+                    </ul>
                 </section>
             </section>
 
             <section>
-                <h3 id="exporting-data">4.4.Exporting Data</h3>
+                <h3 id="studying">4.3.Studying</h3>
                 <section>
-                    <h4 id="description_and_priority_1">4.4.1.Description and Priority</h4>
-                    <p>Data such as questions, laws, signs or the leaderboard can be exported in CSV or JSON formats. The priority of this feature is medium, as it does not affect the functionality of the platform, but rather expands it to other parties that use the API.</p>
+                    <h4 id="description_and_priority_3">4.3.1.Description and Priority</h4>
+                    <p>The user can study the laws and signs on the platform. The priority of this feature is high, as it is essential
+                        for the users to learn the necessary information for the permit exam.</p>
                 </section>
                 <section>
-                    <h4 id="stimulus_response_sequences_1">4.4.2.Stimulus/Response Sequences</h4>
-                    <p>Through API requests, the user can export the data in CSV or JSON formats. The data that can be exported is: questions, laws, signs or the leaderboard. The administrator can also manage the forms inside the web application, and export the leaderboard as a RSS feed.
+                    <h4 id="stimulus_response_sequences_3">4.3.2.Stimulus/Response Sequences</h4>
+                    <p>When on the page "Legislation" or "Traffic Signs", the user can click on a chapter or category to see the articles or signs.</p>
                 </section>
                 <section>
-                    <h4 id="functional_requirements_1">4.4.3.Functional Requirements</h4>
-                    <p>TBD</p>
+                    <h4 id="functional_requirements_3">4.3.3.Functional Requirements</h4>
+                    <p>
+                        <!--TODO: Add functional requirements-->
+                    </p>
                 </section>
+            </section>
+
+            <section>
+                <h3 id="quiz-solving">4.4.Quiz Solving (gamification aspect)</h3>
+                <section>
+                    <h4 id="description_and_priority_4">4.4.1.Description and Priority</h4>
+                    <p>
+                        The user can practice for the permit exam by solving questions or quizzes. The priority of this
+                        feature is high, because it is important to test your knowledge before taking the exam.
+                    </p>
+                </section>
+                <section>
+                    <h4 id="stimulus_response_sequences_4">4.4.2.Stimulus/Response Sequences</h4>
+                    <p>
+                        When on the "Practice" page, the user is presented with a leaderboard of the most hardowrking students,
+                        that is also available as an RSS feed, a search bar and two buttons. The search bar allows users to search
+                        for a specific question based on certain keywords. The first button leads to the "Exercise questions" page.
+                    </p>
+                    <!--TODO: imagine mediu invatare -->
+                    <p>
+                        The 2nd button leads to the "Quiz" page. Both pages have a common component, that is the question with three
+                        answers, of which the user can select either one or more. On the "Exercise" page, there is a progress bar
+                        to keep track of how much they have solved. On the "Quiz" page, instead of the progress bar,
+                        there is a timer and a counter for how much they have solved. At the end of the quiz, the user is shown
+                        his final score and if he passed or faild.
+                    </p>
+                    <!-- TODO: imagine dintr-un quiz -->
+                </section>
+                <section>
+                    <h4 id="functional_requirements_4">4.4.3.Functional Requirements</h4>
+                    <ul>
+                        <li>The page provides an order list with the top 5 most hardworking students (available as an RSS feed too);</li>
+                        <li>The user can search for a specific question based on certain keywords, after which he is redirected on a separate page;</li>
+                        <li>The user can practice for the permit exam by solving questions or quizzes;</li>
+                        <li>For the "Practice" aspect, the user receives only questions they have not solved yet;</li>
+                        <li>The progress bar must reflect the user progress;</li>
+                        <li>For the "Quiz" aspect, the user receives a random set of questions, with a timer and a counter for how much they have solved;</li>
+                        <li>Each question has three answers, the user must select at least one before sending the response;</li>
+                        <li>If the user does not know the response, they can skip to the next question using the arrow buttons;</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <h3 id="admin">4.5.Admin Dashboard</h3>
+                <section>
+                    <h4 id="description_and_priority_5">4.5.1.Description and Priority</h4>
+                    <p>
+                        Admins of the application have a central page where they can add or remove questions from the database,
+                        and export data about the users as a CSV file. The priority of this feature is high, as it is essential
+                        for the admins to be able to manage the data shown on the site.
+                    </p>
+                    <!--TODO: imagine admin dashboard-->
+                </section>
+                <section>
+                    <h4 id="stimulus_response_sequences_5">4.5.2.Stimulus/Response Sequences</h4>
+                    <p>
+                        The admin can access the dashboard by going to the <a href="/admin">/admin</a> page. Here, they are
+                        presented with two forms, one for adding questions and one for deleting questions. First form requires
+                        the admin to fill in the question, the answers and check the correct ones. The second form has a field for the
+                        id of the question to be deleted. The admin can also export the users and their scores as a CSV file.
+                    </p>
+                </section>
+                <section>
+                    <h4 id="functional_requirements_5">4.4.3.Functional Requirements</h4>
+                    <ul>
+                        <!--TODO: Add functional requirements-->
+                    </ul>
+                </section>
+            </section>
+        </section>
+
+        <section>
+            <h3 id="export-and-rss">4.6.Data Exporting and RSS</h3>
+            <section>
+                <h4 id="description_and_priority_6">4.6.1.Description and Priority</h4>
+                <p>
+                    <!--TODO: Add description and priority-->
+                    <!-- write about the JSON and RSS feed, as the CSV is already covered -->
+                </p>
+            </section>
+            <section>
+                <h4 id="stimulus_response_sequences_6">4.6.2.Stimulus/Response Sequences</h4>
+                <p>
+                    <!--TODO: Add stimulus/response sequences-->
+                </p>
+            </section>
+            <section>
+                <h4 id="functional_requirements_6">4.6.3.Functional Requirements</h4>
+                <ul>
+                    <!--TODO: Add functional requirements-->
+                </ul>
             </section>
         </section>
     </article>

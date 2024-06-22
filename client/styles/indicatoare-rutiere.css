@@ -14,8 +14,8 @@ body, html {
 
 .image-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three images per row */
-    grid-gap: 4rem; /* Gap between images */
+    grid-template-columns: repeat(3, 1fr); /* Three docs-static per row */
+    grid-gap: 4rem; /* Gap between docs-static */
     justify-content: flex-end;
     margin-left: 3.4rem;
     margin-top: 0.3rem;

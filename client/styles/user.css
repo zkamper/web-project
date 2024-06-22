@@ -111,7 +111,6 @@
   font-weight: 300;
   cursor: pointer;
   transition: all 0.3s;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
 }
@@ -237,4 +236,6 @@
   .dashboard {
     flex-direction: column;
   }
-}/*# sourceMappingURL=user.css.map */
+}
+
+/*# sourceMappingURL=user.css.map */
