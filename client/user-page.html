@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/user.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/navbarScript.js" defer></script>
+    <script src="scripts/fetchPastScores.js" defer></script>
     <script src="scripts/profileScript.js" defer></script>
     <script src="https://kit.fontawesome.com/2451e89b81.js" crossorigin="anonymous"></script>
     <link
@@ -55,6 +56,7 @@
                     <button class="submit-button" onclick="handleLogout()">Logout</button>
                 </div>
             </form>
+
             <div class="container__progress">
                 <p>Progresul la mediul de învățare</p>
                 <div class="progress-bar">
@@ -62,6 +64,18 @@
                 </div>
             </div>
             <button class="submit-button" id="reset-button" type="submit">Resetează progres</button>
+            
+
+            <div class="container__grid">
+                <div class="results-container">
+                    <h3>Rezultate anterioare</h3>
+                    <div class="grid-container" id="results-grid">
+                        <!-- Grid items will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+
+            
             <h2> Traffic Instructor 101</h2>
             <p>Îți dorești să dai examenul pentru permisul auto? Stai fără grijăm, cu noi o să fie floare la ureche!
             </p>
