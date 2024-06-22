@@ -5,7 +5,11 @@ async function renderPastScores() {
     const gridContainer = document.getElementById("results-grid");
         
     try {
-        let response = await fetch(apiPath);
+        let response = await fetch(apiPath,{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            }
+        });
         let data = await response.json();
         
         // check quizScores existance
@@ -28,7 +32,7 @@ async function renderPastScores() {
                 const date = new Date(item.date).toLocaleDateString('en-GB');
             
                 gridItem.innerHTML = `
-                    <p>${item.score} RON</p>
+                    <p>${item.score}</p>
                     <p>${date}</p>
                 `;
             
