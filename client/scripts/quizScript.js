@@ -68,6 +68,10 @@ const fetchQuestion = async (id, questions, offset) => {
                         myAnswers.push(parseInt(button.id));
                     }
                 });
+                if(myAnswers.length === 0) {
+                    alert('Selecteaza cel putin un raspuns!');
+                    return;
+                }
                 const response = await fetch(`/api/quiz/questions/${question.id}`, {
                     method: 'POST',
                     headers: headers,

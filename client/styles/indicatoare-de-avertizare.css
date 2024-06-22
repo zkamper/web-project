@@ -31,7 +31,7 @@ body, html {
     height: auto;
     transition: transform 0.3s ease; /* Transition effect */
     position: relative;
-    z-index: 1; /*images stay above the text */
+    z-index: 1; /*docs-static stay above the text */
 }
 
 .image-container img:hover {
