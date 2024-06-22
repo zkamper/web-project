@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Title",
-    "description": "Title",
+    "title": "API Documentation",
+    "description": "API documentation for Romanian Traffic Instructor",
     "version": "1.0.0"
   },
   "host": "localhost",
@@ -32,7 +32,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "type": "array",
               "items": {
@@ -49,10 +49,321 @@
                   "type": "string"
                 }
               }
-
             }
           }
         }
+      }
+    },
+    "/api/indicatoare/{section}": {
+      "get": {
+        "tags": [
+          "indicatoare"
+        ],
+        "summary": "Get road signs by section",
+        "description": "Get road signs by section",
+        "operationId": "getRoadSignsBySection",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "section",
+            "in": "path",
+            "description": "Section",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/RoadSignsResponse"
+            }
+          },
+          "404": {
+            "description": "Road signs not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/questions/{id}": {
+      "get": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "Get question by ID",
+        "description": "Returns a question by its ID",
+        "operationId": "getQuestionById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the question",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "example": 999
+                },
+                "id": {
+                  "type": "integer",
+                  "example": 69
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Care dintre următorii factori reprezintă baza conduitei preventive?"
+                },
+                "answers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "integer"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Question not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Question not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to delete question",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Failed to delete question"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "questions"
+        ],
+        "summary": "Check answers for a question",
+        "description": "Checks the answers provided by the user for a given question",
+        "operationId": "checkAnswers",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the question",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "answers",
+            "in": "body",
+            "description": "Array of integers representing the answers provided by the user",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer JWT token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully checked answers",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isCorrect": {
+                  "type": "boolean"
+                },
+                "answers": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input: answers must be an array of integers",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid input: answers must be an array of integers"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error checking answers",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Error checking answers"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/rss.xml": {
+      "get": {
+        "tags": [
+          "rss"
+        ],
+        "summary": "Get RSS feed",
+        "description": "Returns the RSS feed",
+        "operationId": "getRssFeed",
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "The RSS feed"
+          },
+          "500": {
+            "description": "Error generating RSS feed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Error generating RSS feed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Search for questions",
+        "description": "Search for questions based on a query string",
+        "operationId": "searchQuestions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer JWT token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "716"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Ce trebuie să faceți imediat după un accident cu un animal sălbatic?"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Couldn't find your question",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Couldn't find your question"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     }
   },
@@ -61,8 +372,8 @@
       "type": "object",
       "properties": {
         "_id": {
-            "type": "string"
-            },
+          "type": "string"
+        },
         "section": {
           "type": "string"
         },
@@ -77,6 +388,49 @@
           "format": "int32"
         }
       }
+    },
+    "RoadSignsResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "src": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "subtitle": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
     }
   }
 }
