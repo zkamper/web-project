@@ -48,7 +48,7 @@ const handleRegister = async (res, req) => {
     });
 }
 
-const deleteQuizInfo = async (res, req) => {
+const deleteUserProgress = async (res, req) => {
     const payload = await handleToken(res, req);
     if (!payload) {
         return;
@@ -246,7 +246,7 @@ module.exports = {
     handleLogin,
     handleChangePassword,
     getTopUsers,
-    deleteQuizInfo,
+    deleteUserProgress,
     handleUserProfile,
     getAdminDashboard,
     getUsersCSV

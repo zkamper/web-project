@@ -6,7 +6,7 @@ const {getImageBySection} = require('./controllers/image_controller');
 const {addNewQuestion, deleteQuestionById, getRandomQuestion, getQuestionById, checkQuestionAnswers, handleQuiz, checkQuizQuestionAnswers,
     searchQuestions
 } = require('./controllers/question_controller');
-const {handleLogin, handleRegister, handleChangePassword, deleteQuizInfo, getTopUsers, handleUserProfile,
+const {handleLogin, handleRegister, handleChangePassword, deleteUserProgress, getTopUsers, handleUserProfile,
     getAdminDashboard, getUsersCSV
 } = require("./controllers/user_controller");
 const handleResponse = require("./utils/handleResponse");
@@ -101,7 +101,7 @@ const makeServer = async () => {
         }
         //DELETE /api/user/profile
         else if (method ==='DELETE' && path === '/api/users/profile'){
-            await deleteQuizInfo(res, req); 
+            await deleteUserProgress(res, req); 
         }
         else if (method === 'GET' && path === '/api/admin') {
             await getAdminDashboard(res, req);
