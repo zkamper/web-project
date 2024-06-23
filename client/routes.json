@@ -200,23 +200,21 @@
             "format": "int64"
           },
           {
-            "name": "answers",
+            "name": "body",
             "in": "body",
-            "description": "Array of integers representing the answers provided by the user",
+            "description": "Object containing an array of integers representing the answers provided by the user",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "integer"
+              "type": "object",
+              "properties": {
+                "answers": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
               }
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Bearer JWT token",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -317,13 +315,6 @@
             "description": "Search query",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Bearer JWT token",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -354,6 +345,18 @@
                 "error": {
                   "type": "string",
                   "example": "Couldn't find your question"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error occurred while searching",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Error occurred while searching"
                 }
               }
             }
@@ -426,11 +429,13 @@
       }
     }
   },
-  "securityDefinitions": {
-    "Bearer": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
   }
 }

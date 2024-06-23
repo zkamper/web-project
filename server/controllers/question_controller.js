@@ -315,7 +315,7 @@ const checkQuestionAnswers = async (res, req, id) => {
     });
 
     req.on('end', async () => {
-        //try-catch since the body might now be always a valid int
+        //try-catch since the body might now be always a valid array of ints
         try {
             let authorization = req.headers.authorization;
             let payload;
