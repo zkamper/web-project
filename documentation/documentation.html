@@ -282,7 +282,7 @@
                     <li>
                         Our app API, which facilitates the communication between the front and back end. It also features a
                         public API, with the Swagger page available at <a href="/docs">/docs</a>.
-                        <!-- TODO: imagine swagger -->
+                        <img src="docs-static/swagger.JPG" alt="swagger page">
                     </li>
                     <li>
                         The database, which is provided by MongoDB, and is accessed through the Mongoose library. It contains all
@@ -308,7 +308,7 @@
                     <p>The user can choose to create an account on the platform, so that he can track his progress and
                         compete with other users on the leaderboard. The priority of this feature is high, as it is
                         essential for the users to keep track of their progress.</p>
-                    <!--TODO: imagine login page-->
+                        <img src="docs-static/loginFull.JPG" alt="login page">
                 </section>
                 <section>
                     <h4 id="stimulus_response_sequences_1">4.1.2.Stimulus/Response Sequences</h4>
@@ -377,7 +377,15 @@
                 <section>
                     <h4 id="functional_requirements_3">4.3.3.Functional Requirements</h4>
                     <p>
-                        <!--TODO: Add functional requirements-->
+                        <ul>
+                            <li>The platform provides categorized sections for laws (legislation) and traffic signs (traffic signs).</li>
+                            <li>Each section (legislation and traffic signs) allows the user to navigate through chapters or categories based on their individual preferences.</li>
+                            <li>After selecting a chapter or category, the platform will dynamically (through AJAX) display relevant articles or signs.</li>
+                            <li>Users are able then to view detailed information about each law article or traffic sign, including textual descriptions, visual representations and some recommendations about them.</li>
+                            <li>For each law article, users have access to explanations and interpretations that aid in understanding the theoretical concepts.</li>
+                            <li>The application includes interactive elements such as quizzes or questionnaires, used as an alternative to studying and practicing their knowledge regarding laws and signs.</li>
+                            <li>Users have the ability to track their progress in studying laws and signs, including completed questionnaires, along their past scores.</li>
+                        </ul>
                     </p>
                 </section>
             </section>
@@ -398,7 +406,7 @@
                         that is also available as an RSS feed, a search bar and two buttons. The search bar allows users to search
                         for a specific question based on certain keywords. The first button leads to the "Exercise questions" page.
                     </p>
-                    <!--TODO: imagine mediu invatare -->
+                    <img src="docs-static/practiceImage.JPG" alt="practice page">
                     <p>
                         The 2nd button leads to the "Quiz" page. Both pages have a common component, that is the question with three
                         answers, of which the user can select either one or more. On the "Exercise" page, there is a progress bar
@@ -406,7 +414,7 @@
                         there is a timer and a counter for how much they have solved. At the end of the quiz, the user is shown
                         his final score and if he passed or faild.
                     </p>
-                    <!-- TODO: imagine dintr-un quiz -->
+                    <img src="docs-static/quizzImage.JPG" alt="quizz page">
                 </section>
                 <section>
                     <h4 id="functional_requirements_4">4.4.3.Functional Requirements</h4>
@@ -432,7 +440,7 @@
                         and export data about the users as a CSV file. The priority of this feature is high, as it is essential
                         for the admins to be able to manage the data shown on the site.
                     </p>
-                    <!--TODO: imagine admin dashboard-->
+                    <img src="docs-static/adminImage.JPG" alt="admin page">
                 </section>
                 <section>
                     <h4 id="stimulus_response_sequences_5">4.5.2.Stimulus/Response Sequences</h4>
@@ -446,31 +454,47 @@
                 <section>
                     <h4 id="functional_requirements_5">4.4.3.Functional Requirements</h4>
                     <ul>
-                        <!--TODO: Add functional requirements-->
+                        <li>The admin dashboard includes a secure login mechanism for accessing administrative functionalities.</li>
+                        <li>After a successful login, the admin has the tools to add new questions, or delete existing ones from the database.</li>
+                        <li>The "Add Question" form includes fields for question text, answer choices, and checkboxes for marking correct answers.</li>
+                        <li>The admin also has the ability to delete questions from the database by entering the ID of the question to be deleted.</li>
+                        <li>Present is a tool to export user data (including usernames and scores) in CSV format for external analysis or record keeping.</li>
+                        <li>Any action performed by the admin (addition or deletion of questions) is also updated in the database.</li>
+                        <li>The admin dashboard successfully implements appropriate error handling and validation to prevent unauthorized actions and data inconsistencies.</li>
+                        <li>This page is available to authorized personnel only, in order to restrict acess to 'outsiders' from taking administrative actions.</li>
                     </ul>
                 </section>
             </section>
         </section>
 
         <section>
-            <h3 id="export-and-rss">4.6.Data Exporting and RSS</h3>
+            <h3 id="export-and-rss">4.6. Data Exporting and RSS Feed</h3>
             <section>
-                <h4 id="description_and_priority_6">4.6.1.Description and Priority</h4>
+                <h4 id="description_and_priority_6">4.6.1. Description and Priority</h4>
                 <p>
-                    <!--TODO: Add description and priority-->
-                    <!-- write about the JSON and RSS feed, as the CSV is already covered -->
+                    The "Data Exporting and RSS Feed" feature provides essential functionalities for accessing and utilizing platform data in various formats. After searching for a question, there exists the functionality of exporting question data in JSON format. Additionally, the a RSS feed based on top user scores, alongside their names is also present, enhancing user engagement and competition awareness.
+                </p>
+                <p>
+                    This feature is crucial for enhancing user learning experiences as it facilitates offline access by giving the possibilty of downloading the study materials and providing real-time updates on user performance.
                 </p>
             </section>
             <section>
-                <h4 id="stimulus_response_sequences_6">4.6.2.Stimulus/Response Sequences</h4>
+                <h4 id="stimulus_response_sequences_6">4.6.2. Stimulus/Response Sequences</h4>
                 <p>
-                    <!--TODO: Add stimulus/response sequences-->
+                    <strong>JSON Export:</strong> Users initiate the process by entering keywords to search for specific questions. After selecting a question that matches the input keyword, they can view its id, the correct answers and the image/full text associated with it.
+                </p>
+                <p>
+                    <strong>RSS Feed:</strong> The RSS feed updates in real-time, providing users with current top 5 user, based off their scores(used formula:  score = averageOfTheAnsweredQuestions * 99 + questionsAnswered/totalQuestions ). The feed is constructed from an rss template, without any help from an external library. It includes a unique identifier (GUID) and essential details about user performance, allowing them to easily track their progress relative to others.
                 </p>
             </section>
             <section>
-                <h4 id="functional_requirements_6">4.6.3.Functional Requirements</h4>
+                <h4 id="functional_requirements_6">4.6.3. Functional Requirements</h4>
                 <ul>
-                    <!--TODO: Add functional requirements-->
+                    <li>The application provides a search functionality for users to find questions, based off keywords.</li>
+                    <li>After selecting one of the matched questions, users are able to view detailed information including its id, the correct answers and the image/text associated with it.</li>
+                    <li>Users can choose to download questions in JSON format for offline access or integration with external tools.</li>                    <li>The RSS feed shall update dynamically to reflect current top user scores, enhancing user engagement and competition awareness.</li>
+                    <li>Each item in the RSS feed contains a unique identifier (GUID) and relevant user score details for clarity and usability.</li>
+                    <li>Both JSON export and RSS feed functionalities are based on open standars, and as such, easily support integration with external platforms or tools.</li>
                 </ul>
             </section>
         </section>
