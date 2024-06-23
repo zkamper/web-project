@@ -205,18 +205,16 @@
             "description": "Array of integers representing the answers provided by the user",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "integer"
-              }
+              "type": "object",
+                "properties": {
+                    "answers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                    }
+                }
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Bearer JWT token",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -238,13 +236,13 @@
             }
           },
           "400": {
-            "description": "Invalid input: answers must be an array of integers",
+            "description": "Invalid input",
             "schema": {
               "type": "object",
               "properties": {
                 "error": {
                   "type": "string",
-                  "example": "Invalid input: answers must be an array of integers"
+                  "example": "Invalid input: answers field must be an array of integers"
                 }
               }
             }
@@ -315,13 +313,6 @@
             "name": "search",
             "in": "query",
             "description": "Search query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Bearer JWT token",
             "required": true,
             "type": "string"
           }
