@@ -6,7 +6,7 @@ const HOST = process.env.MONGO_HOST;
 const { TO_SCRAPE_LAW, TO_SCRAPE_IMG } = require('./links');
 const Law = require('../models/law_model')
 const Image = require('../models/sign_model')
-main().then(() => {
+runScraper().then(() => {
     console.log('Connected to MongoDB');
 })
 
@@ -64,7 +64,7 @@ async function scrapeUrl(toScrape, scrapeFunc) {
         });
     });
 }
-async function main() {
+async function runScraper() {
     await mongoose.connect(HOST);
     await Law.collection.drop();
     await Image.collection.drop();
@@ -79,4 +79,8 @@ async function main() {
         await scrapeUrl(toScrape, processImageData);
     }
     await mongoose.connection.close();
+}
+
+module.exports = {
+    runScraper
 }

@@ -6,7 +6,7 @@ const HOST = process.env.MONGO_HOST;
 const {START_LINK } = require('./links');
 const Question = require('../models/question_model')
 
-main().then(() => {
+runQuestionScraper().then(() => {
     console.log('Connected to MongoDB');
 })
 
@@ -58,7 +58,7 @@ async function scrapeUrl(toScrape, scrapeFunc) {
         });
     });
 }
-async function main() {
+async function runQuestionScraper() {
     await mongoose.connect(HOST);
     await Question.collection.drop();
     console.log('Dropped collection');
@@ -73,4 +73,8 @@ async function main() {
         i++;
     }
     await mongoose.connection.close();
+}
+
+module.exports = {
+    runQuestionScraper
 }

@@ -18,6 +18,9 @@ const Question = require('./models/question_model')
 // Server setup
 const http = require('http');
 const url = require('url');
+const {runUserMocker} = require("./db/mock_users");
+const {runQuestionScraper} = require("./db/question_scraper");
+const {runScraper} = require("./db/web_scraper");
 const PORT = process.env.PORT || 8090;
 
 main().then(() => {
@@ -30,9 +33,14 @@ async function main() {
     try {
         await mongoose.connect(process.env.MONGO_HOST);
         await User.createCollection();
-        await QuizToken.createCollection();
+        await runUserMocker();
+
+        await runQuestionScraper();
         Question.schema.index({title: 'text'});
         await Question.createIndexes();
+        await QuizToken.createCollection();
+
+        await runScraper();
         await makeServer();
     } catch (error) {
         console.log('Error connecting to MongoDB: ' + error);
