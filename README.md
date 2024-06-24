@@ -3,7 +3,7 @@ Proiect pentru materia Tehnologii Web, realizat de Jiglău Gabriel și Călin Io
 Pentru deployment a fost folosit nginx, serverul Node.js rulând într-un Docker Container
 
 - __Prezentare video__: https://www.youtube.com/watch?v=XEYmP9OPXP8
-- __Pocumentatia__: in `documentation` sau alternativ la ruta `/raport`
+- __Documentatia__: in `documentation` sau alternativ la ruta `/raport`
 - __OpenAPI Spec__: `/docs`
 - __Hosting__: http://kln.tplinkdns.com (self-hosted pe Raspberry Pi)
 
