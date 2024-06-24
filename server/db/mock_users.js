@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const User = require('../models/user_model');
 const {faker} = require('@faker-js/faker');
 const CryptoJS = require('crypto-js');
-async function runUserMocker() {
-    await mongoose.connect(process.env.MONGO_HOST);
+async function runUserMocker(connected) {
+    if(!connected) {
+        await mongoose.connect(process.env.MONGO_HOST);
+    }
     for(let i = 0; i < 10; i++) {
         let count = Math.floor(Math.random() * 10);
         let quizScores = [];
@@ -32,12 +34,10 @@ async function runUserMocker() {
         })
         await user.save();
     }
-    await mongoose.connection.close();
+    if(!connected) {
+        await mongoose.connection.close();
+    }
 }
-
-runUserMocker().then(() => {
-    console.log('Users created');
-});
 
 module.exports = {
     runUserMocker

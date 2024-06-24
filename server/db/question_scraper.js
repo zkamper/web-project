@@ -6,9 +6,6 @@ const HOST = process.env.MONGO_HOST;
 const {START_LINK } = require('./links');
 const Question = require('../models/question_model')
 
-runQuestionScraper().then(() => {
-    console.log('Connected to MongoDB');
-})
 
 const scrapeQuestion = async (data, id) => {
     let questionModel = {
@@ -58,8 +55,10 @@ async function scrapeUrl(toScrape, scrapeFunc) {
         });
     });
 }
-async function runQuestionScraper() {
-    await mongoose.connect(HOST);
+async function runQuestionScraper(connected) {
+    if(!connected) {
+        await mongoose.connect(HOST);
+    }
     await Question.collection.drop();
     console.log('Dropped collection');
     await Question.createCollection();
@@ -72,7 +71,9 @@ async function runQuestionScraper() {
         startLink = newURL;
         i++;
     }
-    await mongoose.connection.close();
+    if(!connected) {
+        await mongoose.connection.close();
+    }
 }
 
 module.exports = {
