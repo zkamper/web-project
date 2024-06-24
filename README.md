@@ -1,6 +1,6 @@
 # web-project - RoT
 Proiect pentru materia Tehnologii Web, realizat de Jiglău Gabriel și Călin Ionuț
-Pentru deployment a fost folosit nginx, serverul Node.js rulând într-un Docker Container
+> Pentru deployment a fost folosit nginx, serverul Node.js rulând într-un Docker Container
 
 - __Prezentare video__: https://www.youtube.com/watch?v=XEYmP9OPXP8
 - __Documentatia__: in `documentation` sau alternativ la ruta `/raport`
